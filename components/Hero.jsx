@@ -42,9 +42,8 @@ export default function Hero() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent bg-black/20" />
+        {/* Dark blur overlay */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[3px]" />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 w-full mt-10">
@@ -98,15 +97,13 @@ export default function Hero() {
             >
               {hero.cta}
             </button>
-            <a
+            <button
               id="hero-brochure-btn"
-              href={siteConfig.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={openModal}
               className="border border-white/30 hover:border-amber-400 hover:bg-amber-400/5 text-white hover:text-amber-400 font-semibold px-6 py-3 rounded-xl text-base transition-all duration-200"
             >
               {hero.ctaSecondary}
-            </a>
+            </button>
           </motion.div>
 
           <motion.div variants={itemVariants} className="text-white/40 text-xs">

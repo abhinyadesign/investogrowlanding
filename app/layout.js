@@ -37,7 +37,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-[#060709] text-white antialiased font-[family-name:var(--font-inter)]" suppressHydrationWarning>
+      <body className="min-h-screen bg-gray-50 text-gray-900 antialiased font-[family-name:var(--font-inter)]" suppressHydrationWarning>
         <SmoothScroll>
           <ModalProvider>{children}</ModalProvider>
         </SmoothScroll>

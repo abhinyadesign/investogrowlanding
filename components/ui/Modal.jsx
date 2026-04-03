@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useModal } from '@/components/ModalContext';
+import { motion } from 'framer-motion';
 
 export default function Modal({ children }) {
   const { isOpen, closeModal } = useModal();
@@ -32,19 +33,27 @@ export default function Modal({ children }) {
       style={{ backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}
       onClick={(e) => e.target === overlayRef.current && closeModal()}
       aria-modal="true"
-      role="dialog"
       aria-label="Contact Form"
+      data-lenis-prevent
     >
-      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-[#0f1117] border border-white/10 animate-modal-in">
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.95, opacity: 0, y: 20 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl border border-gray-100"
+        onClick={(e) => e.stopPropagation()}
+        data-lenis-prevent
+      >
         <button
           onClick={closeModal}
           aria-label="Close modal"
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-gray-900"
         >
           <X size={18} />
         </button>
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -6,8 +6,8 @@ html {
 }
 
 body {
-  background-color: #060709;
-  color: #ffffff;
+  background-color: #f9fafb;
+  color: #111827;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -17,7 +17,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0b0f;
+  background: #f3f4f6;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(245, 158, 11, 0.4);
@@ -43,8 +43,3 @@ body {
   animation: modal-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ─── Select option dark theme fix ────────────────────────────────── */
-select option {
-  background-color: #1a1b22;
-  color: #ffffff;
-}

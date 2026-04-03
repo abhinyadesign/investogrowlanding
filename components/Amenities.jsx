@@ -22,7 +22,9 @@ export default function Amenities() {
   };
 
   return (
-    <section id="amenities" className="py-24 bg-[#060709] overflow-hidden">
+    <section id="amenities" className="py-24 bg-gray-50 relative overflow-hidden">
+      {/* Decorative gradients */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-100/50 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-14"
@@ -30,13 +32,13 @@ export default function Amenities() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-amber-600 text-sm font-semibold uppercase tracking-widest mb-3">
             {amenities.sectionTitle}
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
             {amenities.heading}
           </h2>
-          <p className="text-white/50 max-w-lg mx-auto">{amenities.subheading}</p>
+          <p className="text-gray-600 max-w-lg mx-auto">{amenities.subheading}</p>
         </motion.div>
 
         <motion.div 
@@ -52,12 +54,12 @@ export default function Amenities() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="flex flex-col items-center gap-3 p-5 bg-white/3 border border-white/8 rounded-2xl hover:border-amber-500/30 hover:bg-amber-500/5 hover:-translate-y-1 hover:scale-105 transition-all duration-300 text-center group cursor-pointer will-change-transform"
+                className="flex flex-col items-center gap-3 p-5 bg-white shadow-sm border border-gray-100 rounded-2xl hover:border-amber-500/30 hover:shadow-md hover:-translate-y-1 hover:scale-105 transition-all duration-300 text-center group cursor-pointer will-change-transform"
               >
                 <div className="w-11 h-11 rounded-xl bg-amber-500/15 flex items-center justify-center group-hover:bg-amber-500/25 transition-colors">
-                  <Icon className="text-amber-400 w-5 h-5" />
+                  <Icon className="text-amber-500 w-5 h-5" />
                 </div>
-                <span className="text-white/70 text-xs font-medium leading-tight">
+                <span className="text-gray-900 font-medium text-sm group-hover:text-amber-600 transition-colors">
                   {item.label}
                 </span>
               </motion.div>

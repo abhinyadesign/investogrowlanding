@@ -8,7 +8,7 @@ export default function Footer() {
   const { openModal } = useModal();
 
   return (
-    <footer className="bg-[#060709] border-t border-white/8 pt-16">
+    <footer className="bg-gray-900 border-t border-gray-800 pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           
@@ -108,7 +108,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="border-t border-white/5 py-6">
+      <div className="border-t border-gray-800 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm text-center md:text-left">
             {siteConfig.disclaimer}

@@ -9,7 +9,7 @@ export default function Grandeur() {
   const { openModal } = useModal();
 
   return (
-    <section id="grandeur" className="py-24 bg-[#060709] overflow-hidden">
+    <section id="grandeur" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
@@ -17,13 +17,13 @@ export default function Grandeur() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">
             {grandeur.sectionTitle}
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 uppercase tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 uppercase tracking-tight">
             {grandeur.heading}
           </h2>
-          <p className="text-white/60 max-w-3xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
             {grandeur.subheading}
           </p>
         </motion.div>
@@ -32,7 +32,7 @@ export default function Grandeur() {
           {/* Images Section */}
           <div className="space-y-6 relative">
             <motion.div 
-              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/10 border border-white/10"
+              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-gray-200 border border-gray-100"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -46,7 +46,7 @@ export default function Grandeur() {
               />
             </motion.div>
             <motion.div 
-              className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/10 border border-white/10 w-[85%] ml-auto -mt-24 z-10"
+              className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-gray-200 border border-gray-100 w-[85%] ml-auto -mt-24 z-10"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -71,11 +71,11 @@ export default function Grandeur() {
           >
             {grandeur.features.map((feature, i) => (
               <div key={i} className="group cursor-default">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-amber-500 transition-colors">
                   {feature.title}
                 </h3>
-                <div className="w-12 h-1 bg-amber-500/30 mb-4 group-hover:w-24 group-hover:bg-amber-400 transition-all duration-500" />
-                <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
+                <div className="w-12 h-1 bg-amber-500/30 mb-4 group-hover:w-24 group-hover:bg-amber-500 transition-all duration-500" />
+                <p className="text-gray-600 leading-relaxed group-hover:text-gray-900 transition-colors">
                   {feature.description}
                 </p>
               </div>
@@ -84,7 +84,7 @@ export default function Grandeur() {
             <div className="pt-6">
               <button
                 onClick={openModal}
-                className="border border-white/20 hover:border-amber-400 text-white hover:text-amber-400 bg-white/5 hover:bg-amber-400/5 font-semibold px-8 py-4 rounded-xl transition-all duration-200"
+                className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-8 py-4 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 {grandeur.cta}
               </button>

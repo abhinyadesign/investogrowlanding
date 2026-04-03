@@ -22,20 +22,21 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-24 bg-[#060709] overflow-hidden">
+    <section id="testimonials" className="py-24 bg-gray-50 border-t border-gray-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          className="text-center mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <motion.p variants={itemVariants} className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">
             {testimonials.sectionTitle}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+          </motion.p>
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             {testimonials.heading}
-          </h2>
+          </motion.h2>
         </motion.div>
 
         <motion.div 
@@ -45,32 +46,32 @@ export default function Testimonials() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {testimonials.items.map((t, i) => (
+          {testimonials.items.map((item, i) => (
             <motion.div
               key={i}
               variants={itemVariants}
-              className="bg-white/3 border border-white/10 rounded-2xl p-7 flex flex-col hover:border-amber-500/25 hover:-translate-y-2 transition-all duration-300 will-change-transform"
+              className="bg-white shadow-md border border-gray-100 rounded-2xl p-7 flex flex-col hover:shadow-xl hover:border-amber-500/25 hover:-translate-y-2 transition-all duration-300 will-change-transform"
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-6">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
+              <div className="flex gap-1 mb-5">
+                {Array.from({ length: item.rating }).map((_, j) => (
+                  <Star key={j} className="w-4 h-4 text-amber-500 fill-amber-500" />
                 ))}
               </div>
 
               {/* Quote */}
-              <p className="text-white/65 text-sm leading-relaxed flex-1 italic mb-8">
-                &ldquo;{t.quote}&rdquo;
+              <p className="text-gray-600 italic leading-relaxed mb-6 flex-grow">
+                &ldquo;{item.quote}&rdquo;
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm flex-shrink-0">
-                  {t.name.charAt(0)}
+              <div className="flex items-center gap-4 mt-auto pt-5 border-t border-gray-100">
+                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-sm flex-shrink-0 border border-gray-200">
+                  {item.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm">{t.name}</p>
-                  <p className="text-white/40 text-xs">{t.role}</p>
+                  <h4 className="text-gray-900 font-bold text-sm">{item.name}</h4>
+                  <p className="text-gray-500 text-xs">{item.role}</p>
                 </div>
               </div>
             </motion.div>

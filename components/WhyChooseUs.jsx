@@ -22,19 +22,24 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <section id="usp" className="py-24 bg-[#0a0b0f] overflow-hidden">
+    <section id="why-choose-us" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          className="text-center mb-20 max-w-3xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <motion.p variants={itemVariants} className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">
             {whyChooseUs.sectionTitle}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">{whyChooseUs.heading}</h2>
-          <p className="text-white/50 max-w-2xl mx-auto">{whyChooseUs.subheading}</p>
+          </motion.p>
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black text-gray-900 mb-6 uppercase tracking-tight">
+            {whyChooseUs.heading}
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-gray-600 text-lg leading-relaxed">
+            {whyChooseUs.subheading}
+          </motion.p>
         </motion.div>
 
         <motion.div 
@@ -50,16 +55,20 @@ export default function WhyChooseUs() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="relative group bg-gradient-to-br from-white/5 to-white/0 border border-white/10 rounded-2xl p-7 hover:border-amber-500/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden will-change-transform"
+                className="relative group bg-white shadow-lg border border-gray-100 rounded-2xl p-7 hover:border-amber-500/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden will-change-transform"
               >
                 {/* Glow */}
                 <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-amber-500/5 group-hover:bg-amber-500/10 transition-colors" />
 
-                <div className="w-12 h-12 rounded-xl bg-amber-500/15 flex items-center justify-center mb-5 group-hover:bg-amber-500/25 transition-colors">
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-xl bg-gray-50 flex items-center justify-center mb-6 border border-gray-100 group-hover:scale-110 group-hover:border-amber-500/30 transition-all duration-300">
                   <Icon className="text-amber-400 w-5 h-5" />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-3">{r.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{r.description}</p>
+                {/* Content */}
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{r.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  {r.description}
+                </p>
               </motion.div>
             );
           })}

@@ -20,17 +20,17 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled ? 'bg-[#0a0b0f]/95 shadow-lg backdrop-blur-md border-b border-white/5' : 'bg-transparent'
+        scrolled ? 'bg-white/90 shadow-sm border-b border-gray-200 text-gray-900' : 'bg-transparent text-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex flex-col leading-none">
-            <span className="text-xl font-black text-white tracking-tight">
-              Investo<span className="text-amber-400">Grow</span>
+            <span className="text-xl font-black tracking-tight">
+              Investo<span className="text-amber-500">Grow</span>
             </span>
-            <span className="text-[10px] text-white/50 tracking-widest uppercase">
+            <span className={`text-[10px] tracking-widest uppercase ${scrolled ? 'text-gray-500' : 'text-white/50'}`}>
               Real Estate
             </span>
           </a>
@@ -41,7 +41,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/70 hover:text-amber-400 transition-colors font-medium"
+                className={`text-sm font-medium transition-colors hover:text-amber-500 ${scrolled ? 'text-gray-700' : 'text-white/70'}`}
               >
                 {link.label}
               </a>
@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a
               href={`tel:${siteConfig.phone}`}
-              className="flex items-center gap-2 text-sm text-white/80 hover:text-amber-400 transition-colors"
+              className={`flex items-center gap-2 text-sm transition-colors hover:text-amber-500 ${scrolled ? 'text-gray-700' : 'text-white/80'}`}
             >
               <Phone size={14} />
               {siteConfig.phone}
@@ -60,7 +60,11 @@ export default function Navbar() {
             <button
               id="navbar-enquire-btn"
               onClick={openModal}
-              className="bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25"
+              className={`text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-200 ${
+                scrolled 
+                  ? 'bg-amber-500 hover:bg-amber-600 text-black' 
+                  : 'bg-amber-500 hover:bg-amber-400 text-black'
+              }`}
             >
               Enquire Now
             </button>
@@ -69,7 +73,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             id="mobile-menu-btn"
-            className="md:hidden p-2 text-white"
+            className={`md:hidden p-2 ${scrolled ? 'text-gray-900' : 'text-white'}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -80,21 +84,21 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0a0b0f]/98 border-t border-white/5 px-4 py-4 space-y-3">
+        <div className="md:hidden bg-white text-gray-900 border-t border-gray-100 px-4 py-4 space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="block text-white/70 hover:text-amber-400 py-2 text-sm font-medium transition-colors"
+              className="block text-gray-700 hover:text-amber-500 py-2 text-sm font-medium transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-3 border-t border-white/10 space-y-3">
+          <div className="pt-3 border-t border-gray-100 space-y-3">
             <a
               href={`tel:${siteConfig.phone}`}
-              className="flex items-center gap-2 text-white/70 text-sm"
+              className="flex items-center gap-2 text-gray-700 text-sm"
             >
               <Phone size={14} />
               {siteConfig.phone}
@@ -102,7 +106,7 @@ export default function Navbar() {
             <button
               id="mobile-enquire-btn"
               onClick={() => { openModal(); setMenuOpen(false); }}
-              className="w-full bg-amber-500 hover:bg-amber-400 text-black font-bold py-3 rounded-lg transition-colors"
+              className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-3 rounded-lg transition-colors"
             >
               Enquire Now
             </button>

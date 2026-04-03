@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, Loader2, ChevronDown } from 'lucide-react';
 
 const GENDERS = ['Male', 'Female', 'Other', 'Prefer not to say'];
 const INTERESTS = ['Office Space', 'Retail Shop', 'Restaurant Space', 'Investment', 'Other'];
@@ -72,8 +72,8 @@ export default function ContactForm() {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-16 px-8 text-center">
         <CheckCircle className="text-green-400 w-16 h-16" />
-        <h3 className="text-2xl font-bold text-white">Enquiry Received!</h3>
-        <p className="text-white/70">{serverMessage}</p>
+        <h3 className="text-2xl font-bold text-gray-900">Enquiry Received!</h3>
+        <p className="text-gray-600">{serverMessage}</p>
         <button
           onClick={() => setStatus('idle')}
           className="mt-4 px-6 py-2 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-lg transition-colors"
@@ -85,23 +85,23 @@ export default function ContactForm() {
   }
 
   const inputClass =
-    'w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors';
-  const labelClass = 'block text-sm font-medium text-white/70 mb-1.5';
-  const errorClass = 'text-red-400 text-xs mt-1';
+    'w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all shadow-sm';
+  const labelClass = 'block text-sm font-medium text-gray-700 mb-2';
+  const errorClass = 'text-red-500 text-xs mt-1';
 
   return (
     <div className="p-6 md:p-8">
       <div className="mb-6">
-        <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-1">
+        <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-1">
           Get in Touch
         </p>
-        <h2 className="text-2xl font-bold text-white">Request a Callback</h2>
-        <p className="text-white/50 text-sm mt-1">
-          Fill the form to receive the best deal of the day.
+        <h2 className="text-3xl font-black text-gray-900 mb-2">Request Information</h2>
+        <p className="text-gray-600 text-sm">
+          Register your interest and our experts will connect with you shortly.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
         {/* Name */}
         <div>
           <label htmlFor="cf-name" className={labelClass}>
@@ -110,7 +110,7 @@ export default function ContactForm() {
           <input
             id="cf-name"
             type="text"
-            placeholder="e.g. Rajesh Sharma"
+            placeholder="John Doe"
             className={inputClass}
             {...register('name')}
           />
@@ -152,13 +152,16 @@ export default function ContactForm() {
           <label htmlFor="cf-gender" className={labelClass}>
             Gender *
           </label>
-          <select id="cf-gender" className={inputClass} {...register('gender')}>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
+          <div className="relative">
+            <select id="cf-gender" className={`${inputClass} appearance-none`} {...register('gender')}>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
+          </div>
           {errors.gender && <p className={errorClass}>{errors.gender.message}</p>}
         </div>
 
@@ -167,14 +170,17 @@ export default function ContactForm() {
           <label htmlFor="cf-interest" className={labelClass}>
             Interest *
           </label>
-          <select id="cf-interest" className={inputClass} {...register('interest')}>
-            <option value="">Select Area of Interest</option>
-            <option value="Office Space">Office Space</option>
-            <option value="Retail Shop">Retail Shop</option>
-            <option value="Restaurant Space">Restaurant Space</option>
-            <option value="Investment">Investment / Returns</option>
-            <option value="Other">Other</option>
-          </select>
+          <div className="relative">
+            <select id="cf-interest" className={`${inputClass} appearance-none`} {...register('interest')}>
+              <option value="">Select Area of Interest</option>
+              <option value="Office Space">Office Space</option>
+              <option value="Retail Shop">Retail Shop</option>
+              <option value="Restaurant Space">Restaurant Space</option>
+              <option value="Investment">Investment / Returns</option>
+              <option value="Other">Other</option>
+            </select>
+            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
+          </div>
           {errors.interest && <p className={errorClass}>{errors.interest.message}</p>}
         </div>
 
