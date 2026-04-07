@@ -1,127 +1,196 @@
 'use client';
 
-import Image from 'next/image';
-import { ChevronDown, MapPin } from 'lucide-react';
-import { useModal } from '@/components/ModalContext';
-import { hero, siteConfig } from '@/data/content';
 import { motion } from 'framer-motion';
+import { hero } from '@/data/content';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
-  const { openModal } = useModal();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
+  const stats = hero.stats;
 
   return (
-    <section id="hero" className="relative h-[80vh] min-h-[700px] flex items-center overflow-hidden">
-      {/* Background Image */}
-      <motion.div 
-        initial={{ scale: 1.05 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: 'easeOut' }}
-        className="absolute inset-0 z-0"
-      >
-        <Image
-          src={hero.image}
-          alt="GYGY Mentis – Premium Commercial Property Sector 140 Noida"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        {/* Dark blur overlay */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[3px]" />
-      </motion.div>
+    <section id="hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 w-full mt-10">
-        <motion.div 
-          className="max-w-2xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* RERA Badge / Eyebrow wrapper */}
-          <motion.div variants={itemVariants} className="mb-4">
-            <span className="inline-block bg-amber-500/20 border border-amber-500/40 text-amber-400 font-bold px-3 py-1 rounded-full text-xs tracking-wide">
+      {/* Background Image */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <img
+          src="/images/commercial_office_noida.png"
+          alt="GYGY Mentis Noida"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+        />
+        {/* Multi-layer gradient overlay for depth */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(105deg, rgba(12,16,21,0.97) 0%, rgba(12,16,21,0.82) 45%, rgba(12,16,21,0.25) 100%)',
+          zIndex: 1,
+        }} />
+        {/* Subtle vignette at bottom */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%',
+          background: 'linear-gradient(to top, rgba(12,16,21,0.6) 0%, transparent 100%)',
+          zIndex: 2,
+        }} />
+      </div>
+
+      <div style={{
+        position: 'relative', zIndex: 3,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(100px, 13vh, 160px) 40px clamp(64px, 8vh, 110px)',
+        width: '100%',
+      }}>
+        <div style={{ maxWidth: 740 }}>
+
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 24 }}
+          >
+            <span className="pulse-dot" style={{ flexShrink: 0 }} />
+            <span style={{
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.2em',
+              textTransform: 'uppercase', color: 'var(--accent)',
+            }}>
               {hero.eyebrow}
             </span>
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight mb-3">
-            {hero.heading}
+          {/* H1 */}
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="heading-premium"
+            style={{
+              fontSize: 'clamp(40px, 3.5vw, 88px)',
+              lineHeight: 1.04,
+              marginBottom: 28,
+              color: '#fff',
+              textTransform: 'uppercase',
+              letterSpacing: '-0.03em',
+            }}
+          >
+            {hero.headingPart1}
+            <br />
+            <span style={{ color: 'var(--accent)' }}>
+              {hero.headingPart2}
+            </span>
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-white/70 text-base sm:text-lg mb-6 max-w-xl leading-relaxed">
-            {hero.subheading}
-          </motion.p>
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            style={{
+              fontSize: 'clamp(15px, 1.1vw, 18px)',
+              color: 'rgba(255,255,255,0.68)',
+              lineHeight: 1.65,
+              marginBottom: 40,
+              maxWidth: 560,
+            }}
+            dangerouslySetInnerHTML={{ __html: hero.subheading.replace(/\*\*(.*?)\*\*/g, '<strong style="color:rgba(255,255,255,0.95);font-weight:700">$1</strong>') }}
+          />
 
-          {/* Highlights List */}
-          <motion.div variants={itemVariants} className="space-y-2.5 mb-6">
-            {hero.highlights.map((h, i) => (
-              <div key={i} className="flex items-center gap-3 group">
-                <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center border border-amber-500/30 group-hover:bg-amber-500/20 transition-colors">
-                  <span className="w-2 h-2 rounded-full bg-amber-400" />
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginBottom: 56 }}
+          >
+            <motion.button
+              whileHover={{ y: -3, scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="shimmer-btn"
+              onClick={() => document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' })}
+              style={{
+                color: 'var(--bg-dark)',
+                padding: '16px 34px', borderRadius: 'var(--radius-full)', fontWeight: 800,
+                fontSize: 13, border: 'none', cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', gap: 10,
+                letterSpacing: '0.06em', textTransform: 'uppercase',
+                boxShadow: '0 8px 30px rgba(212,175,55,0.4)',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              {hero.ctaPrimary} <ArrowRight size={16} />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ y: -3, background: 'rgba(255,255,255,0.12)' }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                color: 'rgba(255,255,255,0.9)',
+                padding: '16px 34px', borderRadius: 'var(--radius-full)', fontWeight: 700,
+                fontSize: 13, border: '1px solid rgba(255,255,255,0.15)', cursor: 'pointer',
+                display: 'inline-flex', alignItems: 'center', gap: 10,
+                backdropFilter: 'blur(12px)',
+                letterSpacing: '0.06em', textTransform: 'uppercase',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              {hero.ctaSecondary}
+            </motion.button>
+          </motion.div>
+
+          {/* Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.55 }}
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 0,
+              borderTop: '1px solid rgba(255,255,255,0.1)',
+              paddingTop: 32,
+            }}
+          >
+            {stats.map((s, i) => (
+              <div key={i} style={{
+                paddingRight: 32,
+                paddingLeft: i !== 0 ? 32 : 0,
+                borderLeft: i !== 0 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+              }}>
+                <div
+                  className="shimmer-num"
+                  style={{ fontSize: 'clamp(22px, 2.8vw, 32px)', fontWeight: 800, marginBottom: 4 }}
+                >
+                  {s.value}
                 </div>
-                <span className="text-base sm:text-lg text-white font-medium group-hover:text-amber-300 transition-colors">
-                  {h}
-                </span>
+                <div style={{
+                  fontSize: 10,
+                  color: 'rgba(255,255,255,0.45)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px',
+                  fontWeight: 600,
+                }}>
+                  {s.label}
+                </div>
               </div>
             ))}
           </motion.div>
-          
-          <motion.div variants={itemVariants} className="flex items-center gap-2 text-white/50 text-sm mb-6 bg-white/5 border border-white/10 w-fit px-3 py-1.5 rounded-lg">
-             <MapPin size={16} className="text-amber-400" /> 
-             {hero.location}
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-6">
-            <button
-              id="hero-enquire-btn"
-              onClick={openModal}
-              className="bg-amber-500 hover:bg-amber-400 text-black font-bold px-6 py-3 rounded-xl text-base transition-all duration-200 hover:shadow-2xl hover:shadow-amber-500/30 hover:-translate-y-0.5"
-            >
-              {hero.cta}
-            </button>
-            <button
-              id="hero-brochure-btn"
-              onClick={openModal}
-              className="border border-white/30 hover:border-amber-400 hover:bg-amber-400/5 text-white hover:text-amber-400 font-semibold px-6 py-3 rounded-xl text-base transition-all duration-200"
-            >
-              {hero.ctaSecondary}
-            </button>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="text-white/40 text-xs">
-            {hero.reraLabel}
-          </motion.div>
-
-        </motion.div>
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 animate-bounce"
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        style={{
+          position: 'absolute', bottom: 36, right: 40, zIndex: 4,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+          cursor: 'pointer',
+        }}
+        onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })}
       >
-        <span className="text-white/30 text-[10px] tracking-widest uppercase">Scroll</span>
-        <ChevronDown size={14} className="text-white/30" />
+        <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <ChevronDown size={18} style={{ color: 'rgba(255,255,255,0.35)' }} />
+        </motion.div>
       </motion.div>
     </section>
   );

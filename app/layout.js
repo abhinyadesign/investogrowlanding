@@ -1,12 +1,12 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ModalProvider } from '@/components/ModalContext';
-import SmoothScroll from '@/components/SmoothScroll';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata = {
@@ -16,8 +16,8 @@ export const metadata = {
   keywords:
     'GYGY Mentis, commercial property Noida, Sector 140 Noida, office space investment, retail shop Noida, assured returns commercial property, InvestoGrow',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
   },
   openGraph: {
     title: 'GYGY Mentis | Premium Commercial Investment – Sector 140, Noida',
@@ -28,19 +28,14 @@ export const metadata = {
     locale: 'en_IN',
     type: 'website',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-gray-50 text-gray-900 antialiased font-[family-name:var(--font-inter)]" suppressHydrationWarning>
-        <SmoothScroll>
-          <ModalProvider>{children}</ModalProvider>
-        </SmoothScroll>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className="min-h-screen antialiased" suppressHydrationWarning>
+        <ModalProvider>{children}</ModalProvider>
       </body>
     </html>
   );

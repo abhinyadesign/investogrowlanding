@@ -1,98 +1,106 @@
 'use client';
 
-import { Star } from 'lucide-react';
-import { useModal } from '@/components/ModalContext';
-import { testimonials } from '@/data/content';
 import { motion } from 'framer-motion';
+import { testimonials } from '@/data/content';
+import { Quote, Star } from 'lucide-react';
 
 export default function Testimonials() {
-  const { openModal } = useModal();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  const data = testimonials;
 
   return (
-    <section id="testimonials" className="py-24 bg-gray-50 border-t border-gray-200 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          className="text-center mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+    <section id="testimonials" style={{ background: 'var(--bg-secondary)' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 40px' }}>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ textAlign: 'center', marginBottom: 72 }}
         >
-          <motion.p variants={itemVariants} className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">
-            {testimonials.sectionTitle}
-          </motion.p>
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
-            {testimonials.heading}
-          </motion.h2>
+          <div className="label-premium" style={{ justifyContent: 'center' }}>
+            <span style={{ width: 20, height: 2, borderRadius: 2, background: 'var(--accent)', flexShrink: 0 }} />
+            {data.tag || 'The Proof'}
+          </div>
+          <h2 className="heading-premium" style={{ fontSize: 'clamp(28px, 4vw, 52px)' }}>
+            {data.heading || 'Trusted by Discerning Investors'}
+          </h2>
         </motion.div>
 
-        <motion.div 
-          className="grid md:grid-cols-3 gap-6 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {testimonials.items.map((item, i) => (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 24,
+        }}>
+          {data.items.map((item, i) => (
             <motion.div
               key={i}
-              variants={itemVariants}
-              className="bg-white shadow-md border border-gray-100 rounded-2xl p-7 flex flex-col hover:shadow-xl hover:border-amber-500/25 hover:-translate-y-2 transition-all duration-300 will-change-transform"
+              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="premium-card"
+              style={{
+                padding: '40px 36px',
+                background: 'var(--bg-surface)',
+                display: 'flex', flexDirection: 'column',
+              }}
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-5">
-                {Array.from({ length: item.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 text-amber-500 fill-amber-500" />
+              <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
+                {[...Array(5)].map((_, si) => (
+                  <Star key={si} size={14} style={{ color: 'var(--accent)', fill: 'var(--accent)' }} />
                 ))}
               </div>
 
-              {/* Quote */}
-              <p className="text-gray-600 italic leading-relaxed mb-6 flex-grow">
-                &ldquo;{item.quote}&rdquo;
-              </p>
+              <Quote size={28} style={{ color: 'var(--accent)', marginBottom: 20, opacity: 0.6 }} />
 
-              {/* Author */}
-              <div className="flex items-center gap-4 mt-auto pt-5 border-t border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-sm flex-shrink-0 border border-gray-200">
-                  {item.name.charAt(0)}
+              <blockquote style={{
+                fontSize: 16, color: 'var(--text-primary)', lineHeight: 1.7,
+                marginBottom: 36, fontStyle: 'italic', fontWeight: 400, flex: 1,
+              }}>
+                {item.quote}
+              </blockquote>
+
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 16,
+                borderTop: '1px solid var(--border-subtle)', paddingTop: 24,
+              }}>
+                <div style={{
+                  width: 52, height: 52, borderRadius: 'var(--radius-full)',
+                  border: '2px solid var(--accent)',
+                  overflow: 'hidden', flexShrink: 0,
+                  background: 'var(--accent-dim)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  {['/images/ShivamSharma.png', '/images/MahimaKumari.png'][i] ? (
+                    <img
+                      src={['/images/ShivamSharma.png', '/images/MahimaKumari.png'][i]}
+                      alt={item.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--accent)' }}>
+                      {item.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                  )}
                 </div>
                 <div>
-                  <h4 className="text-gray-900 font-bold text-sm">{item.name}</h4>
-                  <p className="text-gray-500 text-xs">{item.role}</p>
+                  <div style={{
+                    fontSize: 16, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.2px',
+                  }}>
+                    {item.name}
+                  </div>
+                  <div style={{
+                    fontSize: 11, color: 'var(--text-muted)',
+                    textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 600, marginTop: 3,
+                  }}>
+                    {item.role}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-        >
-          <button
-            id="testimonials-cta-btn"
-            onClick={openModal}
-            className="bg-amber-500 hover:bg-amber-400 text-black font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25"
-          >
-            {testimonials.cta}
-          </button>
-        </motion.div>
       </div>
     </section>
   );

@@ -1,232 +1,194 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle, Loader2, ChevronDown } from 'lucide-react';
+import { CheckCircle2, Loader2, ChevronDown } from 'lucide-react';
 
-const GENDERS = ['Male', 'Female', 'Other', 'Prefer not to say'];
+const GENDERS   = ['Male', 'Female', 'Other', 'Prefer not to say'];
 const INTERESTS = ['Office Space', 'Retail Shop', 'Restaurant Space', 'Investment', 'Other'];
-const BUDGETS = [
-  'Below ₹50 Lakh',
-  '₹50L – ₹1 Crore',
-  '₹1 Crore – ₹2 Crore',
-  '₹2 Crore – ₹5 Crore',
-  'Above ₹5 Crore',
-];
+const BUDGETS   = ['Below ₹50 Lakh', '₹50L – ₹1 Crore', '₹1 Crore – ₹2 Crore', '₹2 Crore – ₹5 Crore', 'Above ₹5 Crore'];
 
 const schema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z
-    .string()
-    .regex(/^[+]?[\d\s\-()]{7,15}$/, 'Please enter a valid phone number'),
-  gender: z
-    .string()
-    .refine((v) => GENDERS.includes(v), { message: 'Please select your gender' }),
-  interest: z
-    .string()
-    .refine((v) => INTERESTS.includes(v), { message: 'Please select your area of interest' }),
-  budget: z
-    .string()
-    .refine((v) => BUDGETS.includes(v), { message: 'Please select your budget range' }),
+  name:     z.string().min(2, 'Name must be at least 2 characters').max(100),
+  email:    z.string().email('Please enter a valid email address'),
+  phone:    z.string().regex(/^[+]?[\d\s\-()]{7,15}$/, 'Please enter a valid phone number'),
+  gender:   z.string().refine(v => GENDERS.includes(v),   { message: 'Please select your gender' }),
+  interest: z.string().refine(v => INTERESTS.includes(v), { message: 'Please select your area of interest' }),
+  budget:   z.string().refine(v => BUDGETS.includes(v),   { message: 'Please select your budget range' }),
 });
 
+const inputStyle = {
+  background: 'var(--bg-secondary)',
+  border: '1px solid var(--border-subtle)',
+  borderRadius: 'var(--radius-md)',
+  padding: '12px 16px',
+  paddingRight: 40,
+  height: '52px',
+  color: 'var(--text-primary)',
+  fontSize: 15,
+  fontWeight: 500,
+  fontFamily: 'inherit',
+  outline: 'none',
+  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  appearance: 'none',
+  WebkitAppearance: 'none',
+  boxSizing: 'border-box',
+};
+
+const labelStyle = {
+  display: 'block',
+  fontSize: 11,
+  fontWeight: 800,
+  letterSpacing: '2px',
+  textTransform: 'uppercase',
+  color: 'var(--text-muted)',
+  marginBottom: 10,
+};
+
 export default function ContactForm() {
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [status, setStatus]           = useState('idle');
   const [serverMessage, setServerMessage] = useState('');
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data) => {
     setStatus('loading');
     setServerMessage('');
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      const res  = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       const json = await res.json();
-      if (json.success) {
-        setStatus('success');
-        setServerMessage(json.message);
-        reset();
-      } else {
-        setStatus('error');
-        setServerMessage(json.message || 'Something went wrong. Please try again.');
-      }
+      if (json.success) { setStatus('success'); setServerMessage(json.message); reset(); }
+      else              { setStatus('error');   setServerMessage(json.message || 'Something went wrong.'); }
     } catch {
-      setStatus('error');
-      setServerMessage('Network error. Please check your connection and try again.');
+      setStatus('error'); setServerMessage('Network error. Please try again.');
     }
   };
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-16 px-8 text-center">
-        <CheckCircle className="text-green-400 w-16 h-16" />
-        <h3 className="text-2xl font-bold text-gray-900">Enquiry Received!</h3>
-        <p className="text-gray-600">{serverMessage}</p>
-        <button
-          onClick={() => setStatus('idle')}
-          className="mt-4 px-6 py-2 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-lg transition-colors"
-        >
-          Submit Another Enquiry
-        </button>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, padding: '60px 40px', textAlign: 'center' }}>
+        <div style={{ width: 80, height: 80, borderRadius: 'var(--radius-full)', background: 'var(--bg-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CheckCircle2 size={40} style={{ color: 'var(--accent)' }} />
+        </div>
+        <h3 className="heading-premium" style={{ fontSize: 24, color: 'var(--text-primary)', marginBottom: 8 }}>Enquiry Received!</h3>
+        <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.6 }}>{serverMessage}</p>
+        <button onClick={() => setStatus('idle')} style={{
+          marginTop: 12, padding: '14px 32px', borderRadius: 'var(--radius-full)', border: 'none', cursor: 'pointer',
+          background: 'var(--bg-dark)', color: '#fff', fontWeight: 800, fontSize: 14, letterSpacing: '1.5px', textTransform: 'uppercase'
+        }}>Submit Another</button>
       </div>
     );
   }
 
-  const inputClass =
-    'w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all shadow-sm';
-  const labelClass = 'block text-sm font-medium text-gray-700 mb-2';
-  const errorClass = 'text-red-500 text-xs mt-1';
+  const Field = ({ id, label, children, error }) => (
+    <div style={{ marginBottom: 4 }}>
+      <label htmlFor={id} style={labelStyle}>{label}</label>
+      {children}
+      {error && <div style={{ fontSize: 12, color: '#EF4444', marginTop: 8, fontWeight: 600 }}>{error}</div>}
+    </div>
+  );
+
+  const applyFocus = (e) => { 
+    e.target.style.borderColor = 'var(--accent)'; 
+    e.target.style.background = '#fff';
+    e.target.style.boxShadow = '0 0 0 4px rgba(212,175,55,0.1)';
+  };
+  const removeFocus= (e) => { 
+    e.target.style.borderColor = 'var(--border-subtle)'; 
+    e.target.style.background = 'var(--bg-secondary)';
+    e.target.style.boxShadow = 'none';
+  };
+
+  const selOpts = (items) => items.map(v => <option key={v} value={v} style={{ background: '#fff', color: 'var(--text-primary)' }}>{v}</option>);
 
   return (
-    <div className="p-6 md:p-8">
-      <div className="mb-6">
-        <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-1">
-          Get in Touch
-        </p>
-        <h2 className="text-3xl font-black text-gray-900 mb-2">Request Information</h2>
-        <p className="text-gray-600 text-sm">
-          Register your interest and our experts will connect with you shortly.
-        </p>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
+        <Field id="cf-name" label="Full Name *" error={errors.name?.message}>
+          <input id="cf-name" type="text" placeholder="John Doe" style={inputStyle} {...register('name')}
+            onFocus={applyFocus} onBlur={removeFocus} />
+        </Field>
+        <Field id="cf-email" label="Email Address *" error={errors.email?.message}>
+          <input id="cf-email" type="email" placeholder="you@email.com" style={inputStyle} {...register('email')}
+            onFocus={applyFocus} onBlur={removeFocus} />
+        </Field>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
-        {/* Name */}
-        <div>
-          <label htmlFor="cf-name" className={labelClass}>
-            Full Name *
-          </label>
-          <input
-            id="cf-name"
-            type="text"
-            placeholder="John Doe"
-            className={inputClass}
-            {...register('name')}
-          />
-          {errors.name && <p className={errorClass}>{errors.name.message}</p>}
-        </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="cf-email" className={labelClass}>
-            Email Address *
-          </label>
-          <input
-            id="cf-email"
-            type="email"
-            placeholder="you@example.com"
-            className={inputClass}
-            {...register('email')}
-          />
-          {errors.email && <p className={errorClass}>{errors.email.message}</p>}
-        </div>
-
-        {/* Phone */}
-        <div>
-          <label htmlFor="cf-phone" className={labelClass}>
-            Phone Number *
-          </label>
-          <input
-            id="cf-phone"
-            type="tel"
-            placeholder="+91 98765 43210"
-            className={inputClass}
-            {...register('phone')}
-          />
-          {errors.phone && <p className={errorClass}>{errors.phone.message}</p>}
-        </div>
-
-        {/* Gender */}
-        <div>
-          <label htmlFor="cf-gender" className={labelClass}>
-            Gender *
-          </label>
-          <div className="relative">
-            <select id="cf-gender" className={`${inputClass} appearance-none`} {...register('gender')}>
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-              <option value="Prefer not to say">Prefer not to say</option>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
+        <Field id="cf-phone" label="Phone Number *" error={errors.phone?.message}>
+          <input id="cf-phone" type="tel" placeholder="+91 98765 43210" style={inputStyle} {...register('phone')}
+            onFocus={applyFocus} onBlur={removeFocus} />
+        </Field>
+        <Field id="cf-gender" label="Gender *" error={errors.gender?.message}>
+          <div style={{ position: 'relative' }}>
+            <select id="cf-gender" style={inputStyle} {...register('gender')} onFocus={applyFocus} onBlur={removeFocus}>
+              <option value="" style={{ background: '#FFFFFF' }}>Select Gender</option>
+              {selOpts(GENDERS)}
             </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
+            <ChevronDown size={18} style={{ color: 'var(--text-muted)', position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
           </div>
-          {errors.gender && <p className={errorClass}>{errors.gender.message}</p>}
-        </div>
+        </Field>
+      </div>
 
-        {/* Interest */}
-        <div>
-          <label htmlFor="cf-interest" className={labelClass}>
-            Interest *
-          </label>
-          <div className="relative">
-            <select id="cf-interest" className={`${inputClass} appearance-none`} {...register('interest')}>
-              <option value="">Select Area of Interest</option>
-              <option value="Office Space">Office Space</option>
-              <option value="Retail Shop">Retail Shop</option>
-              <option value="Restaurant Space">Restaurant Space</option>
-              <option value="Investment">Investment / Returns</option>
-              <option value="Other">Other</option>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
+        <Field id="cf-interest" label="Area of Interest *" error={errors.interest?.message}>
+          <div style={{ position: 'relative' }}>
+            <select id="cf-interest" style={inputStyle} {...register('interest')} onFocus={applyFocus} onBlur={removeFocus}>
+              <option value="" style={{ background: '#FFFFFF' }}>Select Interest</option>
+              <option value="Office Space" style={{ background: '#FFFFFF' }}>Office Space</option>
+              <option value="Retail Shop" style={{ background: '#FFFFFF' }}>Retail Shop</option>
+              <option value="Restaurant Space" style={{ background: '#FFFFFF' }}>Restaurant Space</option>
+              <option value="Investment" style={{ background: '#FFFFFF' }}>Investment / Returns</option>
+              <option value="Other" style={{ background: '#FFFFFF' }}>Other</option>
             </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
+            <ChevronDown size={18} style={{ color: 'var(--text-muted)', position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
           </div>
-          {errors.interest && <p className={errorClass}>{errors.interest.message}</p>}
+        </Field>
+        <Field id="cf-budget" label="Budget Range *" error={errors.budget?.message}>
+          <div style={{ position: 'relative' }}>
+            <select id="cf-budget" style={inputStyle} {...register('budget')} onFocus={applyFocus} onBlur={removeFocus}>
+              <option value="" style={{ background: '#FFFFFF' }}>Select Budget</option>
+              {selOpts(BUDGETS)}
+            </select>
+            <ChevronDown size={18} style={{ color: 'var(--text-muted)', position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+          </div>
+        </Field>
+      </div>
+
+      {status === 'error' && (
+        <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 'var(--radius-md)', padding: '16px 20px', fontSize: 14, color: '#EF4444', fontWeight: 600 }}>
+          {serverMessage}
         </div>
+      )}
 
-        {/* Budget */}
-        <div>
-          <label htmlFor="cf-budget" className={labelClass}>
-            Budget *
-          </label>
-          <select id="cf-budget" className={inputClass} {...register('budget')}>
-            <option value="">Select Budget Range</option>
-            <option value="Below ₹50 Lakh">Below ₹50 Lakh</option>
-            <option value="₹50L – ₹1 Crore">₹50L – ₹1 Crore</option>
-            <option value="₹1 Crore – ₹2 Crore">₹1 Crore – ₹2 Crore</option>
-            <option value="₹2 Crore – ₹5 Crore">₹2 Crore – ₹5 Crore</option>
-            <option value="Above ₹5 Crore">Above ₹5 Crore</option>
-          </select>
-          {errors.budget && <p className={errorClass}>{errors.budget.message}</p>}
-        </div>
+      <motion.button
+        id="cf-submit"
+        type="submit"
+        disabled={status === 'loading'}
+        whileHover={{ y: -4, scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+        className="shimmer-btn"
+        style={{
+          width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12,
+          background: 'var(--bg-dark)',
+          color: '#fff', fontWeight: 800, fontSize: 14, fontFamily: 'inherit',
+          padding: '20px', borderRadius: 'var(--radius-full)', border: 'none', cursor: 'pointer',
+          boxShadow: '0 20px 40px rgba(12,16,21,0.15)',
+          transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          opacity: status === 'loading' ? 0.75 : 1,
+          textTransform: 'uppercase',
+          letterSpacing: '2px'
+        }}
+      >
+        {status === 'loading' ? <><Loader2 className="animate-spin" size={20} /> Processing…</> : "🔒 Get Full Investment Details"}
+      </motion.button>
 
-        {/* Server error */}
-        {status === 'error' && (
-          <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
-            {serverMessage}
-          </p>
-        )}
-
-        <button
-          id="cf-submit"
-          type="submit"
-          disabled={status === 'loading'}
-          className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/60 text-black font-bold py-3.5 rounded-lg transition-all duration-200 mt-2"
-        >
-          {status === 'loading' ? (
-            <>
-              <Loader2 className="animate-spin w-5 h-5" />
-              Submitting...
-            </>
-          ) : (
-            'Submit Enquiry'
-          )}
-        </button>
-
-        <p className="text-center text-white/30 text-xs pt-2">
-          Your information is 100% secure & confidential.
-        </p>
-      </form>
-    </div>
+      <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--text-muted)', marginTop: 8, fontWeight: 500 }}>
+        <strong>No spam. No pressure.</strong> Your details are shared only with Nitin Jain for a confidential conversation.
+      </p>
+    </form>
   );
 }

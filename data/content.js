@@ -1,25 +1,21 @@
-// data/content.js
-// Central content store – swap this with an API call later without touching any component
-
 export const siteConfig = {
   name: 'Investo Grow',
+  legalName: 'Investo Grow Consultancy Pvt. Ltd.',
   projectName: 'GYGY Mentis',
-  tagline: 'BUILT FOR GENERATIONS',
   reraNo: 'UPRERAPRJ251909',
-  phone: '+91 (0) 999 000 1234',
-  whatsapp: 'https://wa.me/919990001234?text=I%20am%20interested%20in%20GYGY%20Mentis%20investment%20plans.',
-  email: 'info@investogrow.com',
-  address: 'Sector-140, Noida-Greater Noida Expressway, Uttar Pradesh 201305',
-  disclaimer:
-    '© Copyright 2026 Investo Grow Consultancy Pvt. Ltd. All Rights Reserved.',
-  cin: 'CIN No Issue Date - 3rd Feb 2026 | GST No Issue Date - 12th March 2026'
+  phone: '+91 8595922033',
+  whatsapp: 'https://wa.me/918595922033?text=Hi%20Nitin,%20I%20want%20to%20know%20more%20about%20GYGY%20Mentis%20investment.',
+  email: 'director@investogrow.in', 
+  website: 'https://investogrow.in',
+  address: 'Sector 140, Noida Expressway',
+  disclaimer: '© Copyright 2026 Investo Grow. All Rights Reserved. Authorised Channel Partner.',
 };
 
 export const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '#services' },
-  { label: 'Properties', href: '#projects' },
-  { label: 'About us', href: '#about' },
+  { label: 'Calculator', href: '#calculator' },
+  { label: 'Project', href: '#project' },
+  { label: 'Location', href: '#location' },
 ];
 
 export const cmsLinks = [
@@ -33,271 +29,139 @@ export const utilityLinks = [
   { label: '404 Error', href: '#' },
   { label: 'Terms and Conditions', href: '#' },
   { label: 'Privacy Policy', href: '#' },
-  { label: 'Style Guide', href: '#' },
 ];
 
-export const grandeur = {
-  sectionTitle: 'Experience the Grandeur',
-  heading: 'Where Luxury Meets Innovation',
-  subheading: 'GYGY Mentis is not just a workspace; it is a masterclass in modern architecture and premium lifestyle. Every corner is meticulously crafted to inspire, engage, and elevate your professional journey.',
-  features: [
-    {
-      title: 'Architectural Brilliance',
-      description: 'A striking glass facade designed with low-E coating to ensure maximum natural daylight while maintaining optimal thermal efficiency.',
-    },
-    {
-      title: 'The Great Atrium',
-      description: 'A double-height central atrium that welcomes visitors with premium marble, ambient lighting, and high-end luxury retail stores.',
-    },
-    {
-      title: 'Opulent Exteriors',
-      description: 'Beautifully landscaped plazas and water features that create an oasis of calm amidst the bustling Expressway.',
-    }
-  ],
-  images: [
-    { src: '/grandeur-ext.png', alt: 'Exterior of GYGY Mentis at dusk showing premium facade' },
-    { src: '/grandeur-int.png', alt: 'Interior atrium and retail luxury space at GYGY Mentis' }
-  ],
-  cta: 'Download Detailed Layouts'
-};
-
-export const masterPlan = {
-  sectionTitle: 'Master Plan',
-  heading: 'Thoughtfully Designed Blueprint',
-  subheading: 'A 6-acre mixed-use development seamlessly integrating premium office suites with high street retail and fine dining options across multiple strategic zones.',
-  image: '/master-plan.png',
-  legends: [
-    { color: 'bg-amber-500', label: 'Premium Office Towers' },
-    { color: 'bg-emerald-500', label: 'High Street Retail Zone' },
-    { color: 'bg-blue-500', label: 'Culinary & Dining (Oculus)' },
-    { color: 'bg-violet-500', label: 'Central Plaza & Landscaping' },
-  ],
-  cta: 'Request Floor Plans'
-};
-
 export const hero = {
-  eyebrow: 'Investment Starts At ₹50 Lakh*',
-  heading: 'Built for Generations',
-  subheading: 'The Future of Commercial Real Estate in Sector 140, Noida.',
-  highlights: [
-    'Get Monthly ₹50,000-/',
-    'Upto 25% Capital Appreciation in 1 year',
-    'Super Structure is Ready',
-    'Near Possession Date',
-  ],
-  cta: 'Contact Us Now',
-  ctaSecondary: 'Download Brochure',
-  reraLabel: `Rera No. : ${siteConfig.reraNo}`,
-  location: 'Sector 140, Noida',
-  image: '/hero-building.png',
-};
-
-export const overview = {
-  sectionTitle: 'Overview',
-  heading: 'GYGY Mentis – Premium Commercial Hub',
-  body: `GYGY Mentis is one of the finest commercial properties in Noida Sector 140, sprawling across 6 acres of prime real estate. The project offers office spaces, retail shops, fine-dining restaurants, a sky lounge, café, gym, swimming pool, and much more.
-
-GYGY Group is a well-reputed and trustworthy real estate developer renowned for delivering projects on time. GYGY Mentis is seamlessly connected to the Noida-Greater Noida Expressway, Delhi, and Greater Noida — making it an ideal destination for businesses and investors alike.`,
+  eyebrow: '⚡ Limited Investor Window — Jewar Airport Effect',
+  headingPart1: 'This Deal Won\'t Wait',
+  headingPart2: 'And Neither Should You.',
+  subheading: '**GYGY Mentis, Sector 140, Noida Expressway** — earn **₹50,000 every month guaranteed** with just ₹50 Lakhs invested. Serious investors only. Prices revising soon.',
   stats: [
-    { value: '6 Acres', label: 'Total Land Area' },
-    { value: '12%', label: 'Assured Rental Return' },
-    { value: '25%', label: 'Capital Appreciation' },
-    { value: '₹50L+', label: 'Investment Starting From' },
+    { value: '12%', label: 'Assured Return' },
+    { value: '₹50K', label: 'Monthly Income' },
+    { value: '25%', label: 'Capital Growth' },
+    { value: '50:50', label: 'Payment Plan' }
   ],
-  bullets: [
-    'Direct Connectivity to Metro Station – Sector 142, Noida',
-    'Direct Access to DMIC & FNG Expressway',
-    '30 Min to Noida International Airport',
-    '40 Min to IGI International Airport',
-    '10 Lakh+ families living in close proximity',
-    'Investment starting from ₹50 Lakh onwards',
-  ],
-  cta: 'Get Full Details',
+  ctaPrimary: '🔒 Reserve Unit',
+  ctaSecondary: 'ROI Calculator →',
+  urgencyWarning: '**Price revision expected soon.** Current rates locked only for registered inquiries.',
 };
 
-export const usp = {
-  sectionTitle: 'USP',
-  heading: 'Why GYGY Mentis Stands Apart',
-  features: [
-    {
-      icon: 'Wind',
-      title: 'Advanced HVAC',
-      description:
-        '3-Tier Air Treatment technology with CO₂ sensors in all office spaces. 6 Air Handling Units (AHU) per floor for pristine air quality.',
-    },
-    {
-      icon: 'Maximize2',
-      title: 'Facade & Glass',
-      description:
-        'Low-E High Performance Glass with low reflectance. Double Glazed Units (DGU) for thermal comfort and noise reduction.',
-    },
-    {
-      icon: 'Wifi',
-      title: 'Smart Infrastructure',
-      description:
-        'Fiber-to-the-Floor (FTTF) ready. 13 High-speed elevators per floor. EV Charging stations in basement.',
-    },
-    {
-      icon: 'Car',
-      title: 'Valet Parking',
-      description:
-        'Dedicated valet services for visitors and retail shoppers ensuring a hassle-free arrival experience.',
-    },
-    {
-      icon: 'Clock',
-      title: '24/7 Access',
-      description:
-        'Designed for round-the-clock operations — perfect for IT companies, MNCs, and global businesses.',
-    },
-    {
-      icon: 'ShieldCheck',
-      title: 'High Security',
-      description:
-        'Advanced 3-tier security system with CCTV surveillance, boom barriers, and manned security posts.',
-    },
-    {
-      icon: 'Utensils',
-      title: 'Oculus Restaurant',
-      description:
-        'First-of-its-kind Oculus Concept Restaurant & Meeting Spot on the Noida Expressway.',
-    },
-    {
-      icon: 'Layers',
-      title: '1st Podium on Expressway',
-      description:
-        'Iconic podium-level development — the first of its kind on the Noida Expressway.',
-    },
-  ],
-  cta: 'Schedule a Site Visit',
-};
-
-export const projects = {
-  sectionTitle: 'Price List',
-  heading: 'Explore Spaces & Inventory',
-  subheading: 'Office, Retail & Restaurant Spaces starting at ₹50 Lakhs*',
-  listings: [
-    {
-      type: 'Office Space',
-      size: '500 – 2000 sq ft',
-      price: '₹50 Lakh* Onwards',
-      highlights: ['Column-free spaces', 'High-speed lifts', 'Premium finishes'],
-    },
-    {
-      type: 'Retail Shop',
-      size: '250 – 800 sq ft',
-      price: '₹60 Lakh* Onwards',
-      highlights: ['High footfall zone', 'Dedicated parking', 'Ground floor visibility'],
-    },
-    {
-      type: 'Restaurant Space',
-      size: '1000 – 5000 sq ft',
-      price: '₹1.2 Cr* Onwards',
-      highlights: ['Oculus concept design', 'Dedicated exhaust', 'Multipurpose zones'],
-    },
-    {
-      type: 'Sky Lounge',
-      size: '2000 – 4000 sq ft',
-      price: 'On Request',
-      highlights: ['Panoramic Expressway views', 'Premium interiors', 'Exclusive access'],
-    },
-  ],
-  cta: 'Get Price List',
-};
-
-export const amenities = {
-  sectionTitle: 'Amenities',
-  heading: 'World-Class Amenities',
-  subheading: 'Every amenity crafted to elevate your work and leisure experience.',
+export const pain = {
+  tag: 'The Problem With Your Money Right Now',
+  heading: 'Your savings are losing value while you wait for the "right time."',
   items: [
-    { icon: 'Dumbbell', label: 'Workout & Fitness Gym' },
-    { icon: 'ShoppingBag', label: 'Premium Retail Space' },
-    { icon: 'Gamepad2', label: 'Entertainment Zone' },
-    { icon: 'Baby', label: 'Kids Zone' },
-    { icon: 'Coffee', label: 'Café & Coffee Lounge' },
-    { icon: 'Utensils', label: 'Restaurant & Dining' },
-    { icon: 'Users', label: 'Client Meeting Spaces' },
-    { icon: 'Waves', label: 'Swimming Pool' },
-    { icon: 'ParkingSquare', label: 'Multi-Level Parking' },
-    { icon: 'Landmark', label: 'Banking & ATM Zone' },
-    { icon: 'Armchair', label: 'Resting & Sitting Alcove' },
-    { icon: 'Sun', label: 'Rooftop Terrace' },
+    { num: '01', text: '**FD gives you 6–7%.** After tax and inflation, you\'re barely breaking even. Your money is parked, not working.' },
+    { num: '02', text: '**Residential real estate** demands crores upfront with zero guaranteed income. Risk is high, returns are uncertain.' },
+    { num: '03', text: '**Stock market volatility** means you check your portfolio every morning hoping it hasn\'t crashed overnight.' },
+    { num: '04', text: '**Good commercial deals** near infrastructure projects get sold privately — by the time they\'re public, the best price is gone.' }
+  ]
+};
+
+export const opportunity = {
+  label: '✅ The Smarter Alternative',
+  heading: 'Commercial Real Estate at Sector 140 gives you guaranteed income + capital growth — simultaneously.',
+  desc: 'GYGY Mentis is not a speculative bet. It\'s a **RERA-registered, super structure ready** commercial project with assured rental returns written into your agreement. Your income starts. Your asset appreciates. Both. At once.'
+};
+
+export const calculatorConfig = {
+  tag: 'Live Returns Calculator',
+  heading: 'See exactly what your money earns.',
+  assumptions: '📌 Based on 12% assured annual rental return + 25% capital appreciation in Year 1. Returns are as per GYGY Group\'s offering. RERA No: UPRERAPRJ251909.'
+};
+
+export const projectDetails = {
+  tag: 'The Project',
+  heading: 'GYGY Mentis — Everything you need in one commercial address.',
+  highlights: [
+    '**₹50 Lakh minimum entry** — accessible commercial real estate',
+    '**12% Assured Annual Return** — guaranteed in agreement',
+    '**₹50,000/month passive income** — on minimum investment',
+    '**25% Capital Appreciation** — in first year alone',
+    '**50:50 Payment Plan** — 50% now, 50% on possession',
+    '**Super Structure Ready** — near possession date',
+    '**RERA Registered** — UPRERAPRJ251909',
   ],
-  cta: 'View All Amenities',
+  overview: [
+    '**5 Acres** of prime Noida Expressway land',
+    '**Premium Office Towers** — column-free, high-speed lifts',
+    '**High Street Retail** — ground floor, maximum footfall',
+    '**Oculus Concept Restaurant** — unique dining destination',
+    '**Sky Lounge & Bar** — panoramic Expressway views',
+    '**Café, Gym, Swimming Pool** — full lifestyle amenities',
+    '**1st Podium Project** on Noida Expressway',
+  ],
+  unitsHeading: 'Available Unit Types',
+  unitsSub: 'All units are RERA-registered. Starting prices as per current inventory.',
+  units: [
+    { icon: '🏛️', type: 'Office Space', price: '₹50L+', size: '500 – 2,000 sq ft', badge: 'Highest Demand' },
+    { icon: '🛍️', type: 'Retail Shop', price: '₹60L+', size: '250 – 800 sq ft', badge: 'High Footfall' },
+    { icon: '🍽️', type: 'Restaurant Space', price: '₹1.2Cr+', size: '1,000 – 5,000 sq ft', badge: 'Oculus Concept' },
+    { icon: '☁️', type: 'Sky Lounge', price: 'On Request', size: '2,000 – 4,000 sq ft', badge: 'Exclusive' },
+  ]
+};
+
+export const airportUrgency = {
+  tag: 'The Jewar Airport Effect',
+  heading: 'Every major airport in India multiplied nearby property values.',
+  desc: 'IGI Airport pushed Dwarka Expressway values **3x in 5 years.** Jewar International Airport — Asia\'s largest upcoming airport — is **just 30 minutes from Sector 140.**',
+  timeline: [
+    { icon: '🏗️', time: 'Now', phase: 'Super Structure Ready', tag: 'Best Price Window', active: true },
+    { icon: '📋', time: 'Soon', phase: 'Possession Nears', tag: 'Price Revision', active: true },
+    { icon: '✈️', time: 'Inauguration', phase: 'Jewar Airport Opens', tag: 'Value Surge', active: false },
+    { icon: '🚀', time: 'Post-Airport', phase: 'Out of Reach', tag: 'Missed Window', active: false },
+  ],
+  warning: '⚠️ **The window to invest at current prices is closing.** Once airport inauguration is announced, developers across Sector 140 will revise pricing. Investors who act before that announcement lock in the **pre-airport price** — and ride the full wave of appreciation.'
 };
 
 export const location = {
-  sectionTitle: 'Location',
-  heading: 'The Golden Triangle – Sector 140',
-  subheading:
-    'Situated at the nexus of the Noida–Greater Noida Expressway and the FNG Expressway, providing seamless access to Delhi and the upcoming Jewar Airport.',
-  advantages: [
-    { icon: 'Train', label: '1 km to Metro Station', sub: 'Sector 142, Noida' },
-    { icon: 'Plane', label: '30 Min to Noida Airport', sub: 'Upcoming Jewar Airport' },
-    { icon: 'Plane', label: '40 Min to IGI Airport', sub: 'Delhi International Airport' },
-    { icon: 'Building2', label: 'IT Hub Connectivity', sub: 'DMIC & FNG Expressway' },
-    { icon: 'MapPin', label: 'Noida Expressway', sub: 'Sector 140 – Prime Address' },
-    { icon: 'Users', label: '10 Lakh+ Families Nearby', sub: 'High catchment area' },
-  ],
-  mapEmbed:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.2!2d77.399!3d28.516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDMxJzA0LjciTiA3N8KwMjMnNTcuNCJF!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin',
-  cta: 'Get Directions',
+  tag: 'Connectivity Advantage',
+  heading: 'One address. Every destination.',
+  points: [
+    { icon: '🚇', time: '1 KM', name: 'Metro Station Sector 142, Noida' },
+    { icon: '✈️', time: '30 Min', name: 'Jewar International Airport Upcoming' },
+    { icon: '🛫', time: '40 Min', name: 'IGI International Airport New Delhi' },
+    { icon: '🏭', time: 'Direct', name: 'DMIC & FNG Expressway Industrial Corridor' },
+    { icon: '🏘️', time: '10L+', name: 'Families in Close Proximity' },
+    { icon: '🛣️', time: 'Direct', name: 'Noida–Greater Noida Expressway' },
+  ]
 };
 
-export const whyChooseUs = {
-  sectionTitle: 'Why Us',
-  heading: 'Why Choose Investo Grow?',
-  subheading:
-    'As the authorised sales partner for GYGY Mentis, we provide exclusive access to the best inventory with complete transparency.',
-  reasons: [
-    {
-      icon: 'BadgeCheck',
-      title: 'Best Prices Guaranteed',
-      description: 'Exclusive partner rates and flexible payment plans tailored to your needs.',
-    },
-    {
-      icon: 'Star',
-      title: 'Priority Allocation',
-      description: 'First access to premium atrium units and limited high-value inventory.',
-    },
-    {
-      icon: 'Handshake',
-      title: 'Zero Brokerage',
-      description: 'Direct dealing with complete transparency — no hidden costs, ever.',
-    },
-    {
-      icon: 'HeadphonesIcon',
-      title: 'End-to-End Support',
-      description: 'From documentation and legal due diligence to possession handover.',
-    },
-  ],
-  cta: 'Talk to an Expert',
+export const director = {
+  name: 'Nitin Jain',
+  title: 'Director — Investo Grow',
+  quote: '"I\'ve personally evaluated hundreds of commercial projects across the NCR. **GYGY Mentis is one of the very few where the timing, location, returns, and developer credibility all align perfectly at once.** The Jewar Airport effect alone will change this corridor forever — and the investors who act before inauguration will look back at this as the best decision they ever made."',
+  creds: [
+    { icon: '✅', text: 'RERA Registered Project' },
+    { icon: '🏢', text: 'Authorised Sales Partner' },
+    { icon: '📞', text: 'Personal Guidance on Every Deal' }
+  ]
 };
 
 export const testimonials = {
-  sectionTitle: 'Testimonials',
-  heading: 'What Our Investors Say',
   items: [
     {
       name: 'Rajesh Sharma',
-      role: 'Business Owner, Delhi',
-      quote:
-        'InvestoGrow helped me identify the perfect office space at GYGY Mentis. The process was smooth, transparent, and the returns have been excellent.',
+      role: 'Business Owner, Delhi NCR · Office Space Investor',
+      quote: '"I was comparing multiple commercial projects across Noida. Nitin personally showed me the numbers — 12% assured with 50:50 plan made this a no-brainer. The transparency is what sold me."',
       rating: 5,
     },
     {
       name: 'Priya Mehta',
-      role: 'NRI Investor, Dubai',
-      quote:
-        'Being an NRI, I was skeptical about investing remotely. The team at InvestoGrow guided me through every step and I am thrilled with my retail investment.',
+      role: 'NRI Investor, Dubai · Retail Unit Owner',
+      quote: '"Being an NRI, I was cautious. Investo Grow handled everything — documentation, site visits virtually, and now I earn ₹50,000/month sitting in Dubai. Best decision of 2024."',
       rating: 5,
     },
     {
       name: 'Amit Agarwal',
-      role: 'Portfolio Investor, Noida',
-      quote:
-        'The assured rental returns are exactly as promised. GYGY Mentis and InvestoGrow together make an unbeatable combination for commercial investment.',
+      role: 'Portfolio Investor, Noida · Multiple Units',
+      quote: '"I\'ve invested in 3 commercial properties before. The combination of assured returns + Jewar Airport proximity makes GYGY Mentis the strongest portfolio addition I\'ve made."',
       rating: 5,
     },
-  ],
-  cta: 'Start Your Investment Journey',
+  ]
+};
+
+export const footer = {
+  about: 'Investo Grow Consultancy Pvt. Ltd. is a specialist commercial real estate advisory. Authorised Sales Partner for GYGY Mentis, Sector 140, Noida Expressway.',
+  disclaimer: 'Authorised Channel Partner for GYGY Mentis. RERA No: UPRERAPRJ251909. CIN Issued: 3rd Feb 2026 | GST Issued: 12th March 2026. This site is for informational purposes only. Please verify all details with the RERA authority.'
 };

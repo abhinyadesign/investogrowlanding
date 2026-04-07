@@ -1,113 +1,125 @@
 'use client';
 
-import * as Icons from 'lucide-react';
-import { useModal } from '@/components/ModalContext';
-import { location } from '@/data/content';
 import { motion } from 'framer-motion';
+import { location } from '@/data/content';
+import { MapPin, ArrowUpRight } from 'lucide-react';
 
 export default function Location() {
-  const { openModal } = useModal();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-  };
+  const data = location;
 
   return (
-    <section id="location" className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          
-          {/* Left: Highlights */}
-          <motion.div 
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+    <section id="location" style={{ background: 'var(--bg-secondary)' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 40px' }}>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 'clamp(40px, 6vw, 80px)',
+          alignItems: 'center',
+        }}>
+
+          <motion.div
+            initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div>
-              <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">
-                {location.sectionTitle}
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-4">
-                {location.heading}
-              </h2>
-              <p className="text-gray-600 leading-relaxed max-w-lg">
-                {location.subheading}
-              </p>
+            <div className="label-premium">
+              <MapPin size={13} style={{ color: 'var(--accent)' }} />
+              {data.tag || 'Strategic Location'}
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              {location.advantages.map((adv, i) => {
-                const Icon = Icons[adv.icon] || Icons.MapPin;
-                return (
-                  <motion.div
-                    key={i}
-                    variants={itemVariants}
-                    className="flex items-start gap-4 p-5 bg-gray-50 border border-gray-100 rounded-2xl hover:border-amber-500/30 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-md transition-all duration-300 will-change-transform"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
-                      <Icon className="text-amber-500 w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-gray-900 font-bold text-sm mb-1">{adv.label}</h4>
-                      <p className="text-gray-500 text-xs">{adv.sub}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            <h2 className="heading-premium" style={{
+              fontSize: 'clamp(28px, 4vw, 52px)', marginBottom: 20, lineHeight: 1.1,
+            }}>
+              {data.heading}
+            </h2>
+
+            <p style={{
+              fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: 36,
+            }}>
+              {data.subtext || 'Perfectly positioned at Advant Sector 142, Noida, ensuring your business stays connected to the most vital hubs.'}
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {data.points.map((p, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  style={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    borderBottom: '1px solid var(--border-subtle)', padding: '18px 0',
+                    gap: 16,
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <span style={{ fontSize: 20 }}>{p.icon}</span>
+                    <span style={{
+                      fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.2px',
+                    }}>{p.name || p.label}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                    <span style={{
+                      fontSize: 10, color: 'var(--text-muted)', textTransform: 'uppercase',
+                      letterSpacing: '1px', fontWeight: 600,
+                    }}>Distance</span>
+                    <span style={{
+                      fontSize: 13, color: 'var(--accent)', fontWeight: 800,
+                      background: 'var(--bg-dark)', padding: '5px 14px', borderRadius: 100,
+                      whiteSpace: 'nowrap',
+                    }}>{p.time}</span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Right: Map Embed */}
-          <motion.div 
-            className="w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden relative border border-gray-200 shadow-xl bg-gray-50"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
+          {/* Map */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: 'relative',
+              minHeight: 520,
+              borderRadius: 'var(--radius-xl)',
+              overflow: 'hidden',
+              boxShadow: 'var(--shadow-xl)',
+            }}
           >
-            <iframe
-              src={location.mapEmbed}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 transition-all duration-700"
-              title="Location Map"
+            <img
+              src="/images/IAU2BSodEZAzSqJjl5B2xm2bys849e.jpg"
+              alt="Location Map"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
-            
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white/95 to-white/0 p-6 pt-24 pointer-events-none text-gray-900 border-t border-gray-200/50">
-            </div>
+            {/* Bottom fade */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+              background: 'linear-gradient(to top, rgba(12,16,21,0.75) 0%, transparent 100%)',
+            }} />
+            <motion.button
+              whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => window.open('https://maps.google.com', '_blank')}
+              style={{
+                position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)',
+                background: '#fff', color: 'var(--bg-dark)',
+                padding: '16px 32px', fontSize: 12, fontWeight: 800,
+                display: 'flex', alignItems: 'center', gap: 10,
+                borderRadius: 'var(--radius-full)',
+                letterSpacing: '0.1em', textTransform: 'uppercase',
+                border: 'none', cursor: 'pointer',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+                transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Locate on Google Maps <ArrowUpRight size={16} style={{ color: 'var(--accent)' }} />
+            </motion.button>
           </motion.div>
-        </div>
 
-        <motion.div 
-          className="text-center mt-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <button
-            id="location-cta-btn"
-            onClick={openModal}
-            className="bg-amber-500 hover:bg-amber-400 text-black font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25"
-          >
-            {location.cta}
-          </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

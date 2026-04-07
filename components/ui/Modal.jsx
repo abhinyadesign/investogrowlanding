@@ -9,11 +9,8 @@ export default function Modal({ children }) {
   const { isOpen, closeModal } = useModal();
   const overlayRef = useRef(null);
 
-  // Close on ESC key
   useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'Escape') closeModal();
-    };
+    const handleKey = (e) => { if (e.key === 'Escape') closeModal(); };
     if (isOpen) {
       document.addEventListener('keydown', handleKey);
       document.body.style.overflow = 'hidden';
@@ -29,28 +26,46 @@ export default function Modal({ children }) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 9999,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: 16,
+        background: 'rgba(0,0,0,0.80)',
+        backdropFilter: 'blur(8px)',
+      }}
       onClick={(e) => e.target === overlayRef.current && closeModal()}
       aria-modal="true"
-      aria-label="Contact Form"
+      aria-label="Contact Form Modal"
       data-lenis-prevent
     >
       <motion.div
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.95, opacity: 0, y: 20 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl border border-gray-100"
+        transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+        style={{
+          position: 'relative', width: '100%', maxWidth: 720,
+          maxHeight: '90vh', overflowY: 'auto',
+          borderRadius: 24,
+          boxShadow: '0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,147,42,0.2)',
+        }}
         onClick={(e) => e.stopPropagation()}
         data-lenis-prevent
       >
         <button
           onClick={closeModal}
           aria-label="Close modal"
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-gray-900"
+          style={{
+            position: 'absolute', top: 16, right: 16, zIndex: 10,
+            width: 34, height: 34, borderRadius: '50%',
+            background: 'rgba(15,23,42,0.05)', border: '1px solid rgba(15,23,42,0.1)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', color: '#475569', transition: 'background 0.15s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = 'rgba(15,23,42,0.08)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'rgba(15,23,42,0.05)'}
         >
-          <X size={18} />
+          <X size={16} />
         </button>
         {children}
       </motion.div>

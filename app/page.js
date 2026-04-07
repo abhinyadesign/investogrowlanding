@@ -1,39 +1,60 @@
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import Overview from '@/components/Overview';
-import Grandeur from '@/components/Grandeur';
-import Projects from '@/components/Projects';
-import MasterPlan from '@/components/MasterPlan';
-import WhyChooseUs from '@/components/WhyChooseUs';
-import AboutUs from '@/components/AboutUs';
-import Amenities from '@/components/Amenities';
-import Location from '@/components/Location';
-import Testimonials from '@/components/Testimonials';
-import Footer from '@/components/Footer';
-import Modal from '@/components/ui/Modal';
-import ContactForm from '@/components/ContactForm';
+import Navbar        from '@/components/Navbar';
+import Hero           from '@/components/Hero';
+import Pain           from '@/components/Pain';
+import Opportunity    from '@/components/Opportunity';
+import Calculator     from '@/components/Calculator';
+import ProjectDetails from '@/components/ProjectDetails';
+import AirportUrgency from '@/components/AirportUrgency';
+import Location       from '@/components/Location';
+import Director       from '@/components/Director';
+import FormSection    from '@/components/FormSection';
+import Testimonials   from '@/components/Testimonials';
+import Footer         from '@/components/Footer';
+import Modal          from '@/components/ui/Modal';
+import ContactForm    from '@/components/ContactForm';
+import WhatsAppFloat  from '@/components/WhatsAppFloat';
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
-        <Overview />
-        <Grandeur />
-        <Projects />
-        <MasterPlan />
-        <WhyChooseUs />
-        <Amenities />
+        <Pain />
+        <Opportunity />
+        <Calculator />
+        <ProjectDetails />
+        <AirportUrgency />
         <Location />
-        <AboutUs />
+        <Director />
         <Testimonials />
+        <FormSection />
       </main>
       <Footer />
 
-      {/* Global Contact Modal */}
+      <WhatsAppFloat />
+
+      {/* Enquire Modal */}
       <Modal>
-        <ContactForm />
+        <div style={{
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 'var(--radius-lg)',
+          overflow: 'hidden',
+          position: 'relative',
+          boxShadow: 'var(--shadow-lg)'
+        }}>
+          <div style={{ height: 4, background: 'var(--accent)' }} />
+          <div style={{ padding: '60px 64px' }}>
+            <h2 className="heading-premium" style={{
+              fontSize: 32,
+              color: 'var(--text-primary)', marginBottom: 32, textAlign: 'center',
+            }}>
+              Direct Consultation
+            </h2>
+            <ContactForm />
+          </div>
+        </div>
       </Modal>
     </>
   );
