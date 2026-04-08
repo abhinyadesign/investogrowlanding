@@ -106,8 +106,8 @@ export default function ContactForm() {
   const selOpts = (items) => items.map(v => <option key={v} value={v} style={{ background: '#fff', color: 'var(--text-primary)' }}>{v}</option>);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 4vw, 24px)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 'clamp(16px, 4vw, 24px)' }}>
         <Field id="cf-name" label="Full Name *" error={errors.name?.message}>
           <input id="cf-name" type="text" placeholder="John Doe" style={inputStyle} {...register('name')}
             onFocus={applyFocus} onBlur={removeFocus} />
@@ -118,7 +118,7 @@ export default function ContactForm() {
         </Field>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 'clamp(16px, 4vw, 24px)' }}>
         <Field id="cf-phone" label="Phone Number *" error={errors.phone?.message}>
           <input id="cf-phone" type="tel" placeholder="+91 98765 43210" style={inputStyle} {...register('phone')}
             onFocus={applyFocus} onBlur={removeFocus} />
@@ -134,7 +134,7 @@ export default function ContactForm() {
         </Field>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 'clamp(16px, 4vw, 24px)' }}>
         <Field id="cf-interest" label="Area of Interest *" error={errors.interest?.message}>
           <div style={{ position: 'relative' }}>
             <select id="cf-interest" style={inputStyle} {...register('interest')} onFocus={applyFocus} onBlur={removeFocus}>

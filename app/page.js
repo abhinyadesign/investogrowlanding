@@ -45,10 +45,10 @@ export default function Home() {
           boxShadow: 'var(--shadow-lg)'
         }}>
           <div style={{ height: 4, background: 'var(--accent)' }} />
-          <div style={{ padding: '60px 64px' }}>
+          <div style={{ padding: 'clamp(32px, 8vw, 60px) clamp(20px, 6vw, 64px)' }}>
             <h2 className="heading-premium" style={{
-              fontSize: 32,
-              color: 'var(--text-primary)', marginBottom: 32, textAlign: 'center',
+              fontSize: 'clamp(24px, 6vw, 32px)',
+              color: 'var(--text-primary)', marginBottom: 'clamp(24px, 6vw, 32px)', textAlign: 'center',
             }}>
               Direct Consultation
             </h2>
