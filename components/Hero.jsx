@@ -136,6 +136,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.55 }}
+            className="mobile-flex-col"
             style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -145,7 +146,7 @@ export default function Hero() {
             }}
           >
             {stats.map((s, i) => (
-              <div key={i} style={{
+              <div key={i} className="mobile-stat-item" style={{
                 paddingRight: 32,
                 paddingLeft: i !== 0 ? 32 : 0,
                 borderLeft: i !== 0 ? '1px solid rgba(255,255,255,0.1)' : 'none',
@@ -173,6 +174,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
+        className="desktop-nav"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
         style={{

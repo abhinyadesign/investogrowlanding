@@ -84,6 +84,37 @@ section {
   section {
     padding: 60px 20px;
   }
+  
+  /* Hide desktop-only elements */
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  /* Force all auto-fit minmax grids to 1 column on mobile to prevent overflow */
+  [style*="minmax("] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Force Flex wrappers to column */
+  .mobile-flex-col {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  /* Force Hero Stats to display properly on mobile */
+  .mobile-stat-item {
+    border-left: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 16px;
+  }
+  .mobile-stat-item:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+  }
 }
 
 /* ─── Typography Utilities ───────────────────────────────────────────── */
