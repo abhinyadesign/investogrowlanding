@@ -184,7 +184,7 @@ export default function ContactForm() {
           letterSpacing: '2px'
         }}
       >
-        {status === 'loading' ? <><Loader2 className="animate-spin" size={20} /> Processing…</> : "🔒 Get Full Investment Details"}
+        {status === 'loading' ? <><Loader2 className="animate-spin" size={20} /> Processing…</> : "Get Full Investment Details"}
       </motion.button>
 
       <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--text-muted)', marginTop: 8, fontWeight: 500 }}>
