@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { hero } from '@/data/content';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function Hero() {
+  const { openModal } = useModal();
   const stats = hero.stats;
 
   return (
@@ -106,7 +108,7 @@ export default function Hero() {
               whileHover={{ y: -3, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="shimmer-btn"
-              onClick={() => document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={openModal}
               style={{
                 color: 'var(--bg-dark)',
                 padding: '16px 34px', borderRadius: 'var(--radius-full)', fontWeight: 800,
@@ -123,7 +125,7 @@ export default function Hero() {
             <motion.button
               whileHover={{ y: -3, background: 'rgba(255,255,255,0.12)' }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={openModal}
               style={{
                 background: 'rgba(255,255,255,0.06)',
                 color: 'rgba(255,255,255,0.9)',

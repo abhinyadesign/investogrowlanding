@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { calculatorConfig } from '@/data/content';
-import { TrendingUp, Coins } from 'lucide-react';
+import { TrendingUp, Coins, ArrowRight } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function Calculator() {
+  const { openModal } = useModal();
   const [investAmount, setInvestAmount] = useState(50);
   const data = calculatorConfig;
 
@@ -196,6 +198,33 @@ export default function Calculator() {
               <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--accent)', lineHeight: 1.3 }}>Total Wealth Appreciation</span>
               <span className="gradient-text" style={{ fontSize: 26, fontWeight: 900 }}>{fmt(totalWealth)}</span>
             </div>
+
+            <motion.button
+              onClick={openModal}
+              whileHover={{ scale: 1.02, boxShadow: '0 8px 24px rgba(212,175,55,0.25)' }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                width: '100%',
+                background: 'var(--accent)',
+                color: 'var(--bg-dark)',
+                padding: '16px 24px',
+                borderRadius: 'var(--radius-full)',
+                fontWeight: 800,
+                fontSize: 13,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 10,
+                marginBottom: 32,
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Get Full Financial Breakdown <ArrowRight size={16} />
+            </motion.button>
 
             <div style={{
               position: 'relative', zIndex: 1,

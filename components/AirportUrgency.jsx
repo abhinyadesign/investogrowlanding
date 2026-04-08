@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { airportUrgency } from '@/data/content';
-import { Plane, AlertTriangle } from 'lucide-react';
+import { Plane, AlertTriangle, ArrowRight } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function AirportUrgency() {
+  const { openModal } = useModal();
   const data = airportUrgency;
 
   return (
@@ -136,6 +138,30 @@ export default function AirportUrgency() {
             style={{ fontSize: 16, color: 'var(--text-primary)', lineHeight: 1.75, margin: 0, fontWeight: 500 }}
             dangerouslySetInnerHTML={{ __html: data.warning.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--accent);font-weight:800">$1</strong>') }}
           />
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
+          style={{ display: 'flex', justifyContent: 'center', marginTop: 48 }}
+        >
+          <motion.button
+            onClick={openModal}
+            whileHover={{ y: -2, background: 'rgba(212,175,55,1)' }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              background: 'var(--bg-dark)', color: 'var(--accent)',
+              border: '1px solid var(--accent)', padding: '16px 36px',
+              borderRadius: 'var(--radius-full)', fontWeight: 800,
+              fontSize: 13, gap: 10, display: 'inline-flex', alignItems: 'center',
+              letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--bg-dark)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(212,175,55,0.3)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.background = 'var(--bg-dark)'; e.currentTarget.style.boxShadow = 'none'; }}
+          >
+            Claim First-Mover Pricing <ArrowRight size={16} />
+          </motion.button>
         </motion.div>
 
       </div>

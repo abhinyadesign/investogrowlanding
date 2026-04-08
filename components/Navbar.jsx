@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Phone, ArrowUpRight } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function Navbar() {
+  const { openModal } = useModal();
   const [scrolled, setScrolled]           = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink]       = useState('');
@@ -118,10 +120,7 @@ export default function Navbar() {
           </a>
 
           <button
-            onClick={() => {
-              const el = document.getElementById('enquire') || document.getElementById('contact');
-              el?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={openModal}
             style={{
               background: scrolled ? 'var(--bg-dark)' : 'rgba(212,175,55,1)',
               color: scrolled ? '#fff' : 'var(--bg-dark)',
@@ -224,7 +223,10 @@ export default function Navbar() {
               <Phone size={18} style={{ color: 'var(--accent)' }} /> +91 859 592 2033
             </a>
             <button
-              onClick={() => { setMobileMenuOpen(false); document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' }); }}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openModal();
+              }}
               style={{
                 width: '100%', background: 'var(--bg-dark)', color: '#fff',
                 padding: '18px', border: 'none', fontWeight: 800,

@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion';
 import { projectDetails } from '@/data/content';
 import { Layout, BarChart3, Building2 } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function ProjectDetails() {
   const data = projectDetails;
+  const { openModal } = useModal();
 
   return (
     <section id="project" style={{ background: 'var(--bg-secondary)' }}>
@@ -138,7 +140,7 @@ export default function ProjectDetails() {
           <motion.button
             whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => document.getElementById('enquire')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={openModal}
             style={{
               padding: '18px 48px', background: 'var(--bg-dark)',
               border: 'none', borderRadius: 'var(--radius-full)',

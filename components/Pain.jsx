@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { pain } from '@/data/content';
+import { ArrowRight } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function Pain() {
+  const { openModal } = useModal();
   return (
     <section id="problem" style={{ background: 'var(--bg-base)' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 40px' }}>
@@ -87,6 +90,31 @@ export default function Pain() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }}
+          style={{ display: 'flex', justifyContent: 'center', marginTop: 56 }}
+        >
+          <motion.button
+            onClick={openModal}
+            whileHover={{ y: -2, background: 'rgba(212,175,55,1)' }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              background: 'var(--bg-dark)', color: 'var(--accent)',
+              border: '1px solid var(--accent)', padding: '16px 36px',
+              borderRadius: 'var(--radius-full)', fontWeight: 800,
+              fontSize: 13, gap: 10, display: 'inline-flex', alignItems: 'center',
+              letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--bg-dark)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(212,175,55,0.3)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.background = 'var(--bg-dark)'; e.currentTarget.style.boxShadow = 'none'; }}
+          >
+            Discuss Your Requirements <ArrowRight size={16} />
+          </motion.button>
+        </motion.div>
+
       </div>
     </section>
   );

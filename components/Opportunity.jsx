@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { opportunity } from '@/data/content';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 const IMAGES = Array.from({ length: 10 }, (_, i) => `/images/${i + 1}g.jpg`);
 
 export default function Opportunity() {
+  const { openModal } = useModal();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -47,10 +49,27 @@ export default function Opportunity() {
             <p
               style={{
                 fontSize: 17, color: 'var(--text-secondary)', lineHeight: 1.8,
-                marginBottom: 0, maxWidth: 580,
+                marginBottom: 32, maxWidth: 580,
               }}
               dangerouslySetInnerHTML={{ __html: opportunity.desc.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--text-primary);font-weight:700">$1</strong>') }}
             />
+            <motion.button
+              onClick={openModal}
+              whileHover={{ y: -2, background: 'rgba(212,175,55,1)' }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                background: 'var(--bg-dark)', color: 'var(--accent)',
+                border: '1px solid var(--accent)', padding: '16px 36px',
+                borderRadius: 'var(--radius-full)', fontWeight: 800,
+                fontSize: 13, gap: 10, display: 'inline-flex', alignItems: 'center',
+                letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--bg-dark)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(212,175,55,0.3)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.background = 'var(--bg-dark)'; e.currentTarget.style.boxShadow = 'none'; }}
+            >
+              Request Investment Details <ArrowRight size={16} />
+            </motion.button>
           </motion.div>
 
           <motion.div

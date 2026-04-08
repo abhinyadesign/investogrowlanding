@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { director } from '@/data/content';
-import { Quote } from 'lucide-react';
+import { Quote, ArrowRight } from 'lucide-react';
+import { useModal } from '@/components/ModalContext';
 
 export default function Director() {
+  const { openModal } = useModal();
   const data = director;
 
   return (
@@ -106,6 +108,24 @@ export default function Director() {
                 </div>
               </div>
             </div>
+
+            <motion.button
+              onClick={openModal}
+              whileHover={{ y: -2, background: 'rgba(212,175,55,0.08)', borderColor: 'var(--accent)' }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                marginTop: 32,
+                background: 'transparent', color: 'var(--accent)',
+                border: '1px solid rgba(212,175,55,0.5)', padding: '14px 32px',
+                borderRadius: 'var(--radius-full)', fontWeight: 700,
+                fontSize: 13, gap: 10, display: 'inline-flex', alignItems: 'center',
+                letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Consult with Leadership <ArrowRight size={16} />
+            </motion.button>
+
           </motion.div>
 
         </div>
