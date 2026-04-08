@@ -90,20 +90,23 @@ export default function Location() {
               boxShadow: 'var(--shadow-xl)',
             }}
           >
-            <img
-              src="/images/IAU2BSodEZAzSqJjl5B2xm2bys849e.jpg"
-              alt="Location Map"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
+            <iframe
+              src="https://maps.google.com/maps?q=Advant+Navis+Business+Park,+Sector+142,+Noida&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
             {/* Bottom fade */}
             <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
-              background: 'linear-gradient(to top, rgba(12,16,21,0.75) 0%, transparent 100%)',
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '25%',
+              background: 'linear-gradient(to top, rgba(12,16,21,0.85) 0%, transparent 100%)',
+              pointerEvents: 'none',
             }} />
             <motion.button
               whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => window.open('https://maps.google.com', '_blank')}
+              onClick={() => window.open('https://maps.app.goo.gl/Prk422Jfm8aioJ9c7?g_st=aw', '_blank')}
               style={{
                 position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)',
                 background: '#fff', color: 'var(--bg-dark)',

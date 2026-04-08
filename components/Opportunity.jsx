@@ -1,10 +1,21 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { opportunity } from '@/data/content';
 import { Sparkles } from 'lucide-react';
 
+const IMAGES = Array.from({ length: 10 }, (_, i) => `/images/${i + 1}g.jpg`);
+
 export default function Opportunity() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section id="opportunity" style={{ background: 'var(--bg-secondary)' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 40px' }}>
@@ -54,19 +65,31 @@ export default function Opportunity() {
               boxShadow: 'var(--shadow-xl)',
             }}
           >
-            <img
-              src="/images/yzpRxn2HI5TBopZVeE1K1WuVAd75d.jpg"
-              alt="Premium Real Estate Opportunity"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
+            {IMAGES.map((src, i) => (
+              <motion.img
+                key={src}
+                src={src}
+                alt={`Premium Real Estate Opportunity ${i + 1}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: i === currentIndex ? 1 : 0 }}
+                transition={{ duration: 1.2 }}
+                style={{ 
+                  position: 'absolute', inset: 0, 
+                  width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                  zIndex: i === currentIndex ? 1 : 0
+                }}
+              />
+            ))}
             <div style={{
               position: 'absolute', inset: 0,
               background: 'linear-gradient(45deg, rgba(12,16,21,0.18) 0%, transparent 60%)',
+              zIndex: 2,
             }} />
             <div style={{
               position: 'absolute', bottom: 0, left: 0,
               width: '100%', height: 4,
               background: 'linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent))',
+              zIndex: 2,
             }} />
           </motion.div>
 
