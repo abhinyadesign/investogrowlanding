@@ -87,9 +87,14 @@ section {
   
   /* Reset left/right padding on the 1400px inner container on mobile 
      so we don't have double padding (section 20px + container 40px) */
-  section > div {
+  section:not(#hero) > div {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+  
+  #hero > div {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
   
   /* Hide desktop-only elements */
