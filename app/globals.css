@@ -82,7 +82,14 @@ section {
 
 @media (max-width: 768px) {
   section {
-    padding: 60px 20px;
+    padding: 60px 20px !important;
+  }
+  
+  /* Reset left/right padding on the 1400px inner container on mobile 
+     so we don't have double padding (section 20px + container 40px) */
+  section > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   
   /* Hide desktop-only elements */

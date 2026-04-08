@@ -93,6 +93,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            className="mobile-flex-col"
             style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginBottom: 56 }}
           >
             <motion.button

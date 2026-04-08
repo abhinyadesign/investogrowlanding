@@ -59,7 +59,9 @@ export default function Navbar() {
               filter: scrolled ? 'none' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' 
             }} 
           />
-          <div style={{
+          <div 
+            className="desktop-nav"
+            style={{
             fontWeight: 800, fontSize: 20, letterSpacing: '-0.05em',
             color: scrolled ? 'var(--text-primary)' : '#fff',
             transition: 'color 0.4s ease',

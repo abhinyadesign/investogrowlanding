@@ -179,7 +179,9 @@ export default function Calculator() {
               <StatRow label="Appreciated Value (Y1)" value={fmt(capVal)} isLast />
             </div>
 
-            <div style={{
+            <div 
+              className="mobile-flex-col"
+              style={{
               position: 'relative', zIndex: 1,
               background: 'rgba(212,175,55,0.08)',
               border: '1px solid rgba(212,175,55,0.2)',
@@ -188,9 +190,10 @@ export default function Calculator() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
+              gap: 12,
               marginBottom: 32,
             }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--accent)' }}>Total Wealth Appreciation</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--accent)', lineHeight: 1.3 }}>Total Wealth Appreciation</span>
               <span className="gradient-text" style={{ fontSize: 26, fontWeight: 900 }}>{fmt(totalWealth)}</span>
             </div>
 
