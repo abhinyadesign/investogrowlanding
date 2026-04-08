@@ -80,13 +80,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             style={{
-              fontSize: 'clamp(15px, 1.1vw, 18px)',
-              color: 'rgba(255,255,255,0.68)',
+              fontSize: 'clamp(15px, 1.1vw, 17px)',
+              color: 'rgba(255,255,255,0.85)',
               lineHeight: 1.65,
               marginBottom: 40,
-              maxWidth: 560,
+              maxWidth: 580,
+              background: 'linear-gradient(145deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.02) 100%)',
+              border: '1px solid rgba(212,175,55,0.2)',
+              borderLeft: '4px solid var(--accent)',
+              padding: '20px 24px',
+              borderRadius: 'var(--radius-md)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
             }}
-            dangerouslySetInnerHTML={{ __html: hero.subheading.replace(/\*\*(.*?)\*\*/g, '<strong style="color:rgba(255,255,255,0.95);font-weight:700">$1</strong>') }}
+            dangerouslySetInnerHTML={{ __html: hero.subheading.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--accent);font-weight:800">$1</strong>') }}
           />
 
           {/* CTAs */}

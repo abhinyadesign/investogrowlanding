@@ -42,7 +42,7 @@ export const hero = {
   eyebrow: '⚡ Limited Investor Window — Jewar Airport Effect',
   headingPart1: 'This Deal Won\'t Wait',
   headingPart2: 'And Neither Should You.',
-  subheading: '**GYGY Mentis, Sector 140, Noida Expressway** — earn **₹50,000 every month guaranteed** with just ₹50 Lakhs invested. Serious investors only. Prices revising soon.',
+  subheading: '**GYGY Mentis, Sector 140, Noida Expressway** — earn **₹50,000 every month guaranteed** with just **₹50 Lakhs invested**. Serious investors only. Prices revising soon.',
   stats: [
     { value: '12%', label: 'Assured Return' },
     { value: '₹50K', label: 'Monthly Income' },
