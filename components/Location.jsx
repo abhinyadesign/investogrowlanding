@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { location } from '@/data/content';
-import { MapPin, ArrowUpRight } from 'lucide-react';
+import { MapPin, ArrowUpRight, Clock, Building2 } from 'lucide-react';
 
 export default function Location() {
   const data = location;
@@ -77,51 +77,66 @@ export default function Location() {
             </div>
           </motion.div>
 
-          {/* Map */}
+          {/* Right Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              position: 'relative',
-              minHeight: 520,
+              background: 'var(--bg-surface)',
               borderRadius: 'var(--radius-xl)',
-              overflow: 'hidden',
+              padding: 'clamp(28px, 4vw, 44px)',
               boxShadow: 'var(--shadow-xl)',
+              display: 'flex', flexDirection: 'column', gap: 28,
             }}
           >
-            <iframe
-              src="https://maps.google.com/maps?q=Advant+Navis+Business+Park,+Sector+142,+Noida&t=&z=14&ie=UTF8&iwloc=&output=embed"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-            {/* Bottom fade */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0, height: '25%',
-              background: 'linear-gradient(to top, rgba(12,16,21,0.85) 0%, transparent 100%)',
-              pointerEvents: 'none',
-            }} />
-            <motion.button
-              whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => window.open('https://maps.app.goo.gl/Prk422Jfm8aioJ9c7?g_st=aw', '_blank')}
-              style={{
-                position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)',
-                background: '#fff', color: 'var(--bg-dark)',
-                padding: '16px 32px', fontSize: 12, fontWeight: 800,
-                display: 'flex', alignItems: 'center', gap: 10,
-                borderRadius: 'var(--radius-full)',
-                letterSpacing: '0.1em', textTransform: 'uppercase',
-                border: 'none', cursor: 'pointer',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-                transition: 'all 0.3s ease',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Locate on Google Maps <ArrowUpRight size={16} style={{ color: 'var(--accent)' }} />
-            </motion.button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+              <div style={{ 
+                width: 64, height: 64, borderRadius: '20px', background: 'var(--accent)', 
+                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111', flexShrink: 0,
+                boxShadow: '0 8px 24px rgba(212,175,55,0.3)'
+              }}>
+                <MapPin size={32} />
+              </div>
+              <h3 style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-primary)', margin: 0, letterSpacing: '-0.5px' }}>
+                Visit Our Office
+              </h3>
+            </div>
+            
+            <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.65, margin: 0 }}>
+              We'd love to meet you! Come over for a coffee and a detailed consultation about your future investments.
+            </p>
+
+            <div style={{ position: 'relative', height: 280, borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+              <iframe
+                src="https://maps.google.com/maps?q=Advant+Navis+Business+Park,+Sector+142,+Noida&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 4 }}>
+              <div style={{ display: 'flex', gap: 16 }}>
+                <div style={{ width: 48, height: 48, borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Building2 size={24} style={{ color: 'var(--accent)' }}/>
+                </div>
+                <div>
+                  <div style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6 }}>Head Office</div>
+                  <div style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6 }}>Investo Grow Consultancy Pvt. Ltd.<br/>Sector 140, Noida Expressway, UP - 201305</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 16 }}>
+                <div style={{ width: 48, height: 48, borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Clock size={24} style={{ color: 'var(--accent)' }}/>
+                </div>
+                <div>
+                  <div style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6 }}>Working Hours</div>
+                  <div style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6 }}>Tue - Sun: 10:00 AM - 6:00 PM</div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
         </div>
