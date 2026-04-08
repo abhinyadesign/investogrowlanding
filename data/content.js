@@ -1,3 +1,10 @@
+import { 
+  Building2, ShoppingBag, Utensils, Cloud, 
+  Building, CalendarCheck, Plane, Rocket, 
+  Train, PlaneTakeoff, Factory, Home, Navigation,
+  CheckCircle, PhoneCall
+} from 'lucide-react';
+
 export const siteConfig = {
   name: 'Investo Grow',
   legalName: 'Investo Grow Consultancy Pvt. Ltd.',
@@ -42,7 +49,7 @@ export const hero = {
     { value: '25%', label: 'Capital Growth' },
     { value: '50:50', label: 'Payment Plan' }
   ],
-  ctaPrimary: '🔒 Reserve Unit',
+  ctaPrimary: 'Reserve Unit',
   ctaSecondary: 'ROI Calculator →',
   urgencyWarning: '**Price revision expected soon.** Current rates locked only for registered inquiries.',
 };
@@ -59,7 +66,7 @@ export const pain = {
 };
 
 export const opportunity = {
-  label: '✅ The Smarter Alternative',
+  label: 'The Smarter Alternative',
   heading: 'Commercial Real Estate at Sector 140 gives you guaranteed income + capital growth — simultaneously.',
   desc: 'GYGY Mentis is not a speculative bet. It\'s a **RERA-registered, super structure ready** commercial project with assured rental returns written into your agreement. Your income starts. Your asset appreciates. Both. At once.'
 };
@@ -67,7 +74,7 @@ export const opportunity = {
 export const calculatorConfig = {
   tag: 'Live Returns Calculator',
   heading: 'See exactly what your money earns.',
-  assumptions: '📌 Based on 12% assured annual rental return + 25% capital appreciation in Year 1. Returns are as per GYGY Group\'s offering. RERA No: UPRERAPRJ251909.'
+  assumptions: 'Based on 12% assured annual rental return + 25% capital appreciation in Year 1. Returns are as per GYGY Group\'s offering. RERA No: UPRERAPRJ251909.'
 };
 
 export const projectDetails = {
@@ -94,10 +101,10 @@ export const projectDetails = {
   unitsHeading: 'Available Unit Types',
   unitsSub: 'All units are RERA-registered. Starting prices as per current inventory.',
   units: [
-    { icon: '🏛️', type: 'Office Space', price: '₹50L+', size: '500 – 2,000 sq ft', badge: 'Highest Demand' },
-    { icon: '🛍️', type: 'Retail Shop', price: '₹60L+', size: '250 – 800 sq ft', badge: 'High Footfall' },
-    { icon: '🍽️', type: 'Restaurant Space', price: '₹1.2Cr+', size: '1,000 – 5,000 sq ft', badge: 'Oculus Concept' },
-    { icon: '☁️', type: 'Sky Lounge', price: 'On Request', size: '2,000 – 4,000 sq ft', badge: 'Exclusive' },
+    { icon: Building2, type: 'Office Space', price: '₹50L+', size: '500 – 2,000 sq ft', badge: 'Highest Demand' },
+    { icon: ShoppingBag, type: 'Retail Shop', price: '₹60L+', size: '250 – 800 sq ft', badge: 'High Footfall' },
+    { icon: Utensils, type: 'Restaurant Space', price: '₹1.2Cr+', size: '1,000 – 5,000 sq ft', badge: 'Oculus Concept' },
+    { icon: Cloud, type: 'Sky Lounge', price: 'On Request', size: '2,000 – 4,000 sq ft', badge: 'Exclusive' },
   ]
 };
 
@@ -106,24 +113,24 @@ export const airportUrgency = {
   heading: 'Every major airport in India multiplied nearby property values.',
   desc: 'IGI Airport pushed Dwarka Expressway values **3x in 5 years.** Jewar International Airport — Asia\'s largest upcoming airport — is **just 30 minutes from Sector 140.**',
   timeline: [
-    { icon: '🏗️', time: 'Now', phase: 'Super Structure Ready', tag: 'Best Price Window', active: true },
-    { icon: '📋', time: 'Soon', phase: 'Possession Nears', tag: 'Price Revision', active: true },
-    { icon: '✈️', time: 'Inauguration', phase: 'Jewar Airport Opens', tag: 'Value Surge', active: false },
-    { icon: '🚀', time: 'Post-Airport', phase: 'Out of Reach', tag: 'Missed Window', active: false },
+    { icon: Building, time: 'Now', phase: 'Super Structure Ready', tag: 'Best Price Window', active: true },
+    { icon: CalendarCheck, time: 'Soon', phase: 'Possession Nears', tag: 'Price Revision', active: true },
+    { icon: Plane, time: 'Inauguration', phase: 'Jewar Airport Opens', tag: 'Value Surge', active: false },
+    { icon: Rocket, time: 'Post-Airport', phase: 'Out of Reach', tag: 'Missed Window', active: false },
   ],
-  warning: '⚠️ **The window to invest at current prices is closing.** Once airport inauguration is announced, developers across Sector 140 will revise pricing. Investors who act before that announcement lock in the **pre-airport price** — and ride the full wave of appreciation.'
+  warning: '**The window to invest at current prices is closing.** Once airport inauguration is announced, developers across Sector 140 will revise pricing. Investors who act before that announcement lock in the **pre-airport price** — and ride the full wave of appreciation.'
 };
 
 export const location = {
   tag: 'Connectivity Advantage',
   heading: 'One address. Every destination.',
   points: [
-    { icon: '🚇', time: '1 KM', name: 'Metro Station Sector 142, Noida' },
-    { icon: '✈️', time: '30 Min', name: 'Jewar International Airport Upcoming' },
-    { icon: '🛫', time: '40 Min', name: 'IGI International Airport New Delhi' },
-    { icon: '🏭', time: 'Direct', name: 'DMIC & FNG Expressway Industrial Corridor' },
-    { icon: '🏘️', time: '10L+', name: 'Families in Close Proximity' },
-    { icon: '🛣️', time: 'Direct', name: 'Noida–Greater Noida Expressway' },
+    { icon: Train, time: '1 KM', name: 'Metro Station Sector 142, Noida' },
+    { icon: Plane, time: '30 Min', name: 'Jewar International Airport Upcoming' },
+    { icon: PlaneTakeoff, time: '40 Min', name: 'IGI International Airport New Delhi' },
+    { icon: Factory, time: 'Direct', name: 'DMIC & FNG Expressway Industrial Corridor' },
+    { icon: Home, time: '10L+', name: 'Families in Close Proximity' },
+    { icon: Navigation, time: 'Direct', name: 'Noida–Greater Noida Expressway' },
   ]
 };
 
@@ -132,9 +139,9 @@ export const director = {
   title: 'Director — Investo Grow',
   quote: '"I\'ve personally evaluated hundreds of commercial projects across the NCR. **GYGY Mentis is one of the very few where the timing, location, returns, and developer credibility all align perfectly at once.** The Jewar Airport effect alone will change this corridor forever — and the investors who act before inauguration will look back at this as the best decision they ever made."',
   creds: [
-    { icon: '✅', text: 'RERA Registered Project' },
-    { icon: '🏢', text: 'Authorised Sales Partner' },
-    { icon: '📞', text: 'Personal Guidance on Every Deal' }
+    { icon: CheckCircle, text: 'RERA Registered Project' },
+    { icon: Building2, text: 'Authorised Sales Partner' },
+    { icon: PhoneCall, text: 'Personal Guidance on Every Deal' }
   ]
 };
 

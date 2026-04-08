@@ -21,6 +21,7 @@ const schema = z.object({
 });
 
 const inputStyle = {
+  width: '100%',
   background: 'var(--bg-secondary)',
   border: '1px solid var(--border-subtle)',
   borderRadius: 'var(--radius-md)',

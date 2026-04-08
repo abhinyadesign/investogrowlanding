@@ -54,7 +54,9 @@ export default function Location() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{ fontSize: 20 }}>{p.icon}</span>
+                    <span style={{ display: 'flex', alignItems: 'center', color: 'var(--accent)' }}>
+                      <p.icon size={20} />
+                    </span>
                     <span style={{
                       fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.2px',
                     }}>{p.name || p.label}</span>

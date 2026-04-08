@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { projectDetails } from '@/data/content';
-import { Layout } from 'lucide-react';
+import { Layout, BarChart3, Building2 } from 'lucide-react';
 
 export default function ProjectDetails() {
   const data = projectDetails;
@@ -34,9 +34,9 @@ export default function ProjectDetails() {
           marginBottom: 56,
         }}>
           {[
-            { emoji: '📊', title: 'Investment Highlights', items: data.highlights },
-            { emoji: '🏢', title: 'Project Overview',      items: data.overview   },
-          ].map(({ emoji, title, items }, ci) => (
+            { Icon: BarChart3, title: 'Investment Highlights', items: data.highlights },
+            { Icon: Building2, title: 'Project Overview',      items: data.overview   },
+          ].map(({ Icon, title, items }, ci) => (
             <motion.div
               key={ci}
               initial={{ opacity: 0, x: ci === 0 ? -24 : 24 }} whileInView={{ opacity: 1, x: 0 }}
@@ -51,9 +51,8 @@ export default function ProjectDetails() {
                 <span style={{
                   width: 36, height: 36, borderRadius: 'var(--radius-sm)',
                   background: 'var(--accent-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 18,
                 }}>
-                  {emoji}
+                  <Icon size={18} style={{ color: 'var(--accent)' }} />
                 </span>
                 {title}
               </h3>
@@ -108,9 +107,8 @@ export default function ProjectDetails() {
                 background: 'var(--accent-dim)',
                 borderRadius: 'var(--radius-md)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 30,
               }}>
-                {unit.icon}
+                <unit.icon size={30} style={{ color: 'var(--accent)' }} />
               </div>
               <h4 style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 10 }}>
                 {unit.type}

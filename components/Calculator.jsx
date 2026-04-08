@@ -202,8 +202,8 @@ export default function Calculator() {
               fontSize: 11, color: 'rgba(255,255,255,0.28)', lineHeight: 1.65,
               display: 'flex', gap: 10,
             }}>
-              <TrendingUp size={14} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: 2 }} />
-              <p style={{ margin: 0 }}>{data.assumptions}</p>
+              <TrendingUp size={14} style={{ flexShrink: 0, marginTop: 2, color: 'var(--accent)' }} />
+              <span>{data.assumptions || 'Based on 12% assured annual rental return...'}</span>
             </div>
           </motion.div>
 
